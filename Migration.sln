@@ -1,0 +1,175 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36310.24
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migration.Api", "src\Migration.Api\Migration.Api.csproj", "{8170884A-6D72-33D3-D86E-999DCBF5F988}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "orch", "orch", "{0BD043D4-45CB-476B-95C8-A5E1F15B02BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migration.AppHost", "orch\Migration.AppHost\Migration.AppHost.csproj", "{47031CF1-033A-4F72-18D8-CE31F0219D47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migration.ServiceDefaults", "orch\Migration.ServiceDefaults\Migration.ServiceDefaults.csproj", "{98DEC366-4FAE-481E-8A94-B8713B228B8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migration.Domain", "src\Migration.Domain\Migration.Domain.csproj", "{A4AE6E32-F9BC-4752-94F6-6E1BCD514A6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migration.Application", "src\Migration.Application\Migration.Application.csproj", "{D3EC4836-0CE4-406C-B765-3ED71F1DC4EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migration.Infrastructure", "src\Migration.Infrastructure\Migration.Infrastructure.csproj", "{04D63B34-2A0B-4A79-B6CF-2FDD9E65B16E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3DAA3B6C-7BA7-447F-B0B5-9EFF4BF5A8D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migration.UnitTests", "test\Migration.UnitTests\Migration.UnitTests.csproj", "{6DF98EEC-32AD-4246-9422-3EB27B0A4549}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migration.IntegrationTests", "test\Migration.IntegrationTests\Migration.IntegrationTests.csproj", "{F42E488C-3A40-4592-8EC1-338120CA787A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migration.AcceptanceTests", "test\Migration.AcceptanceTests\Migration.AcceptanceTests.csproj", "{74F1D27A-BC10-4723-90BA-B05E900B7BE6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{67F19B80-D854-4AE6-B696-0E8B33D77A96}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{37A16B26-C410-4C2A-AEAD-D48D21AD1A17}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dev", "dev", "{7D890E41-6F5A-4E3D-B316-A8CD4602D6DE}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\dev\build-dev.yaml = deploy\dev\build-dev.yaml
+		deploy\dev\deploy-dev.yaml = deploy\dev\deploy-dev.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "stg", "stg", "{FB0DFFA4-7D5A-49C6-895B-91708EE62532}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\stg\build-stg.yaml = deploy\stg\build-stg.yaml
+		deploy\stg\deploy-stg.yaml = deploy\stg\deploy-stg.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "prod", "prod", "{901C6339-D6B7-4FB3-AABF-C0AF529A5575}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\prod\build-prod.yaml = deploy\prod\build-prod.yaml
+		deploy\prod\deploy-prod.yaml = deploy\prod\deploy-prod.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aspire", "Aspire", "{C9EC8F3F-4797-46DA-945A-DE0D95584ABC}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\dev\Aspire\app-manifest.json = deploy\dev\Aspire\app-manifest.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", "{C62E70F9-5866-4B96-9DCF-E50B08A52B84}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Terraform", "Terraform", "{6DD8A6D8-B95E-41AC-BCA7-0825D2F09306}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\dev\Terraform\dev.tfvars = deploy\dev\Terraform\dev.tfvars
+		deploy\dev\Terraform\main.tf = deploy\dev\Terraform\main.tf
+		deploy\dev\Terraform\provider.tf = deploy\dev\Terraform\provider.tf
+		deploy\dev\Terraform\variables.tf = deploy\dev\Terraform\variables.tf
+		deploy\dev\Terraform\versions.tf = deploy\dev\Terraform\versions.tf
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aspire", "Aspire", "{7C665B1F-F9E6-4881-A9F7-513BA9822082}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\stg\Aspire\app-manifest.json = deploy\stg\Aspire\app-manifest.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Terraform", "Terraform", "{782F145D-5B78-4283-909B-1D004DA1DBA6}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\stg\Terraform\main.tf = deploy\stg\Terraform\main.tf
+		deploy\stg\Terraform\provider.tf = deploy\stg\Terraform\provider.tf
+		deploy\stg\Terraform\stg.tfvars = deploy\stg\Terraform\stg.tfvars
+		deploy\stg\Terraform\variables.tf = deploy\stg\Terraform\variables.tf
+		deploy\stg\Terraform\versions.tf = deploy\stg\Terraform\versions.tf
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", "{7733D44E-F30A-4AE6-AA8E-08527432EA14}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes", "Kubernetes", "{C52A6651-4B3C-4A1B-A45F-9907AA028AAD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aspire", "Aspire", "{02FF09D8-1709-4786-AB59-E041E2CAC33D}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\prod\Aspire\app-manifest.json = deploy\prod\Aspire\app-manifest.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Terraform", "Terraform", "{19AB53E1-024E-4717-AB59-3402AAC5E15E}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\prod\Terraform\main.tf = deploy\prod\Terraform\main.tf
+		deploy\prod\Terraform\prod.tfvars = deploy\prod\Terraform\prod.tfvars
+		deploy\prod\Terraform\provider.tf = deploy\prod\Terraform\provider.tf
+		deploy\prod\Terraform\variables.tf = deploy\prod\Terraform\variables.tf
+		deploy\prod\Terraform\versions.tf = deploy\prod\Terraform\versions.tf
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8170884A-6D72-33D3-D86E-999DCBF5F988}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8170884A-6D72-33D3-D86E-999DCBF5F988}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8170884A-6D72-33D3-D86E-999DCBF5F988}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8170884A-6D72-33D3-D86E-999DCBF5F988}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47031CF1-033A-4F72-18D8-CE31F0219D47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47031CF1-033A-4F72-18D8-CE31F0219D47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47031CF1-033A-4F72-18D8-CE31F0219D47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47031CF1-033A-4F72-18D8-CE31F0219D47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98DEC366-4FAE-481E-8A94-B8713B228B8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98DEC366-4FAE-481E-8A94-B8713B228B8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98DEC366-4FAE-481E-8A94-B8713B228B8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98DEC366-4FAE-481E-8A94-B8713B228B8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4AE6E32-F9BC-4752-94F6-6E1BCD514A6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4AE6E32-F9BC-4752-94F6-6E1BCD514A6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4AE6E32-F9BC-4752-94F6-6E1BCD514A6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4AE6E32-F9BC-4752-94F6-6E1BCD514A6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3EC4836-0CE4-406C-B765-3ED71F1DC4EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3EC4836-0CE4-406C-B765-3ED71F1DC4EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3EC4836-0CE4-406C-B765-3ED71F1DC4EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3EC4836-0CE4-406C-B765-3ED71F1DC4EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04D63B34-2A0B-4A79-B6CF-2FDD9E65B16E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04D63B34-2A0B-4A79-B6CF-2FDD9E65B16E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04D63B34-2A0B-4A79-B6CF-2FDD9E65B16E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04D63B34-2A0B-4A79-B6CF-2FDD9E65B16E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DF98EEC-32AD-4246-9422-3EB27B0A4549}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DF98EEC-32AD-4246-9422-3EB27B0A4549}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DF98EEC-32AD-4246-9422-3EB27B0A4549}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DF98EEC-32AD-4246-9422-3EB27B0A4549}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F42E488C-3A40-4592-8EC1-338120CA787A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F42E488C-3A40-4592-8EC1-338120CA787A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F42E488C-3A40-4592-8EC1-338120CA787A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F42E488C-3A40-4592-8EC1-338120CA787A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74F1D27A-BC10-4723-90BA-B05E900B7BE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74F1D27A-BC10-4723-90BA-B05E900B7BE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74F1D27A-BC10-4723-90BA-B05E900B7BE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74F1D27A-BC10-4723-90BA-B05E900B7BE6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8170884A-6D72-33D3-D86E-999DCBF5F988} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{47031CF1-033A-4F72-18D8-CE31F0219D47} = {0BD043D4-45CB-476B-95C8-A5E1F15B02BC}
+		{98DEC366-4FAE-481E-8A94-B8713B228B8E} = {0BD043D4-45CB-476B-95C8-A5E1F15B02BC}
+		{A4AE6E32-F9BC-4752-94F6-6E1BCD514A6F} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{D3EC4836-0CE4-406C-B765-3ED71F1DC4EA} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{04D63B34-2A0B-4A79-B6CF-2FDD9E65B16E} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{6DF98EEC-32AD-4246-9422-3EB27B0A4549} = {3DAA3B6C-7BA7-447F-B0B5-9EFF4BF5A8D0}
+		{F42E488C-3A40-4592-8EC1-338120CA787A} = {3DAA3B6C-7BA7-447F-B0B5-9EFF4BF5A8D0}
+		{74F1D27A-BC10-4723-90BA-B05E900B7BE6} = {3DAA3B6C-7BA7-447F-B0B5-9EFF4BF5A8D0}
+		{7D890E41-6F5A-4E3D-B316-A8CD4602D6DE} = {37A16B26-C410-4C2A-AEAD-D48D21AD1A17}
+		{FB0DFFA4-7D5A-49C6-895B-91708EE62532} = {37A16B26-C410-4C2A-AEAD-D48D21AD1A17}
+		{901C6339-D6B7-4FB3-AABF-C0AF529A5575} = {37A16B26-C410-4C2A-AEAD-D48D21AD1A17}
+		{C9EC8F3F-4797-46DA-945A-DE0D95584ABC} = {7D890E41-6F5A-4E3D-B316-A8CD4602D6DE}
+		{C62E70F9-5866-4B96-9DCF-E50B08A52B84} = {7D890E41-6F5A-4E3D-B316-A8CD4602D6DE}
+		{6DD8A6D8-B95E-41AC-BCA7-0825D2F09306} = {7D890E41-6F5A-4E3D-B316-A8CD4602D6DE}
+		{7C665B1F-F9E6-4881-A9F7-513BA9822082} = {FB0DFFA4-7D5A-49C6-895B-91708EE62532}
+		{782F145D-5B78-4283-909B-1D004DA1DBA6} = {FB0DFFA4-7D5A-49C6-895B-91708EE62532}
+		{7733D44E-F30A-4AE6-AA8E-08527432EA14} = {FB0DFFA4-7D5A-49C6-895B-91708EE62532}
+		{C52A6651-4B3C-4A1B-A45F-9907AA028AAD} = {901C6339-D6B7-4FB3-AABF-C0AF529A5575}
+		{02FF09D8-1709-4786-AB59-E041E2CAC33D} = {901C6339-D6B7-4FB3-AABF-C0AF529A5575}
+		{19AB53E1-024E-4717-AB59-3402AAC5E15E} = {901C6339-D6B7-4FB3-AABF-C0AF529A5575}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {499A798C-DDFD-405C-A658-72FB9BE69571}
+	EndGlobalSection
+EndGlobal
