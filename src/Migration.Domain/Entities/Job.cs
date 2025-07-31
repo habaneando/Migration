@@ -1,8 +1,8 @@
-﻿namespace Migration.Api;
+﻿namespace Migration.Domain;
 
-public class StartJobRequest
+public  class Job
 {
-    public string JobType { get; set; }
+    public JobId Id { get; set; }
 
     public List<JobItem> Data { get; set; }
 

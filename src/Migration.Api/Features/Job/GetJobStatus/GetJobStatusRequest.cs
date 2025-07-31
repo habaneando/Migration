@@ -2,4 +2,5 @@
 
 public class GetJobStatusRequest
 {
+    public string JobId { get; set; }
 }
