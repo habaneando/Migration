@@ -8,6 +8,10 @@ public static class DI
 
         services.AddScoped<IBatchJobService, BatchJobService>();
 
+        services.AddSingleton<JobId.Factory>();
+
+        services.AddSingleton<JobItemId.Factory>();
+
         return services;
     }
 }
