@@ -1,1 +1,4 @@
-﻿
+﻿global using Migration.Api;
+global using Migration.Application;
+global using Migration.Domain;
+global using Migration.Infrastructure;

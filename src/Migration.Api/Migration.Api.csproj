@@ -12,6 +12,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\orch\Migration.ServiceDefaults\Migration.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\Migration.Application\Migration.Application.csproj" />
+    <ProjectReference Include="..\Migration.Infrastructure\Migration.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
