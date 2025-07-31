@@ -2,7 +2,7 @@
 
 public interface IJobServiceProvider
 {
-    IJobService? Get(string type);
+    IJobService? TryGet(string type);
 
     void Add(string type, IJobService jobService);
 }

@@ -9,7 +9,7 @@ public class JobServiceProvider : IJobServiceProvider
         Factories = [];
     }
 
-    public IJobService? Get(string type) =>
+    public IJobService? TryGet(string type) =>
         Factories.TryGetValue(type, out var factory)
             ? factory
             : null;
