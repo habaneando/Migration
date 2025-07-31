@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Migration.Common\Migration.Common.csproj" />
     <ProjectReference Include="..\Migration.Domain\Migration.Domain.csproj" />
   </ItemGroup>
 

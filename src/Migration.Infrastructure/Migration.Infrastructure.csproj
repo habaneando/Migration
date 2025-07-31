@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Migration.Application\Migration.Application.csproj" />
+    <ProjectReference Include="..\Migration.Common\Migration.Common.csproj" />
   </ItemGroup>
 
 </Project>

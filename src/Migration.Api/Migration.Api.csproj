@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\orch\Migration.ServiceDefaults\Migration.ServiceDefaults.csproj" />
     <ProjectReference Include="..\Migration.Application\Migration.Application.csproj" />
+    <ProjectReference Include="..\Migration.Common\Migration.Common.csproj" />
     <ProjectReference Include="..\Migration.Infrastructure\Migration.Infrastructure.csproj" />
   </ItemGroup>
 

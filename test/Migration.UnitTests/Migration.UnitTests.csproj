@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Migration.Api\Migration.Api.csproj" />
     <ProjectReference Include="..\..\src\Migration.Application\Migration.Application.csproj" />
+    <ProjectReference Include="..\..\src\Migration.Common\Migration.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>
