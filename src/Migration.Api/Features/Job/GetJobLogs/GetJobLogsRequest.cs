@@ -2,7 +2,7 @@
 
 public class GetJobLogsRequest
 {
-    public string JobId { get; set; }
+    public required string JobId { get; set; }
 
     public int? Page { get; set; }
 

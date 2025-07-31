@@ -1,10 +1,10 @@
 ﻿namespace Migration.Domain;
 
-public  class Job
+public class Job
 {
-    public JobId Id { get; set; }
+    public required JobId Id { get; set; }
 
-    public List<JobItem> Data { get; set; }
+    public List<JobItem> Data { get; set; } = [];
 
-    public JobMetadata? Metadata { get; set; }
+    public JobMetadataDto? Metadata { get; set; }
 }

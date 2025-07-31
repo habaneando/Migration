@@ -14,8 +14,4 @@
     <ProjectReference Include="..\Migration.Common\Migration.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\Persistence\" />
-  </ItemGroup>
-
 </Project>

@@ -1,6 +1,6 @@
 ﻿namespace Migration.Domain;
 
-public class JobMetadata
+public sealed record JobMetadataDto
 {
     public string? Description { get; set; }
 
@@ -10,5 +10,5 @@ public class JobMetadata
 
     public int Priority { get; set; }
 
-    public List<string> Tags { get; set; }
+    public List<string> Tags { get; set; } = [];
 }

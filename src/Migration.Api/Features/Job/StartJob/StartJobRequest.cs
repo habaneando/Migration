@@ -2,9 +2,9 @@
 
 public class StartJobRequest
 {
-    public string JobType { get; set; }
+    public required string JobType { get; set; }
 
-    public List<JobItem> Data { get; set; }
+    public required List<JobItem> Data { get; set; }
 
-    public JobMetadata? Metadata { get; set; }
+    public JobMetadataDto? Metadata { get; set; }
 }

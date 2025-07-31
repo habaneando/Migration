@@ -2,7 +2,7 @@
 
 public  class JobItem
 {
-    public JobItemId Id { get; set; }
+    public required JobItemId Id { get; set; }
 
-    public object Data { get; set; }
+    public required object Data { get; set; }
 }

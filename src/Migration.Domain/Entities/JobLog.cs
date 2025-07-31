@@ -1,12 +1,12 @@
 ﻿namespace Migration.Domain;
 
-public  class JobLog
+public class JobLog
 {
-    public Guid ItemId { get; set; }
+    public required Guid ItemId { get; set; }
 
-    public JobItemStatus Status { get; set; }
+    public required JobItemStatus Status { get; set; }
 
-    public string Description { get; set; }
+    public required string Description { get; set; }
 
-    public DateTime ProcessedAt { get; set; }
+    public required DateTime ProcessedAt { get; set; }
 }
