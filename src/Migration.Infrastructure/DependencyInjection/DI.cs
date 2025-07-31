@@ -10,6 +10,8 @@ public static class DI
 
         services.AddScoped<IDataJobService, DataJobService>();
 
+        services.AddSingleton<IJobServiceProvider, JobServiceProvider>();
+
         return services;
     }
 }
