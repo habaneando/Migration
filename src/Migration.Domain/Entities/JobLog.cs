@@ -2,11 +2,23 @@
 
 public class JobLog
 {
-    public required Guid ItemId { get; set; }
+    public Guid Id { get; private set; }
 
-    public required JobItemStatus Status { get; set; }
+    public JobItemStatus Status { get; private set; }
 
-    public required string Description { get; set; }
+    public string Description { get; private set; }
 
-    public required DateTime ProcessedAt { get; set; }
+    public DateTime ProcessedAt { get; private set; }
+
+    public JobLog(
+        Guid id,
+        JobItemStatus status,
+        string description,
+        DateTime processedAt)
+    {
+        Id = id;
+        Status = status;
+        Description = description;
+        ProcessedAt = processedAt;
+    }
 }
