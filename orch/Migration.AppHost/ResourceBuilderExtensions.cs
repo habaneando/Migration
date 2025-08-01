@@ -14,16 +14,27 @@ internal static class ResourceBuilderExtensions
         where T : IResourceWithEndpoints =>
         builder.WithOpenApiDocs("redoc-docs", "ReDoc API Doc", "redoc");
 
-    private static IResourceBuilder<T> WithOpenApiDocs<T>(this IResourceBuilder<T> builder,
+    private static IResourceBuilder<T> WithOpenApiDocs<T>(
+        this IResourceBuilder<T> builder,
         string name,
         string displayName,
         string openApiUiPath)
         where T : IResourceWithEndpoints
     {
+        var options = new CommandOptions
+        {
+            UpdateState = ctx =>
+                ctx.ResourceSnapshot.HealthStatus == HealthStatus.Healthy
+                    ? ResourceCommandState.Enabled
+                    : ResourceCommandState.Disabled,
+            IconName = "Document",
+            IconVariant = IconVariant.Filled
+        };
+
         return builder.WithCommand(
             name,
             displayName,
-            executeCommand: async _ =>
+            executeCommand: async (ExecuteCommandContext ctx) =>
             {
                 try
                 {
@@ -33,18 +44,17 @@ internal static class ResourceBuilderExtensions
 
                     Process.Start(new ProcessStartInfo(url) { UseShellExecute = true });
 
-                    return new ExecuteCommandResult() { Success = true };
+                    return new ExecuteCommandResult { Success = true };
                 }
                 catch (Exception ex)
                 {
-                    return new ExecuteCommandResult { Success = false, ErrorMessage = ex.ToString() };
+                    return new ExecuteCommandResult
+                    {
+                        Success = false,
+                        ErrorMessage = ex.ToString()
+                    };
                 }
             },
-            updateState: context =>
-                context.ResourceSnapshot.HealthStatus == HealthStatus.Healthy
-                    ? ResourceCommandState.Enabled
-                    : ResourceCommandState.Disabled,
-            iconName: "Document",
-            iconVariant: IconVariant.Filled);
+            commandOptions: options);
     }
 }
