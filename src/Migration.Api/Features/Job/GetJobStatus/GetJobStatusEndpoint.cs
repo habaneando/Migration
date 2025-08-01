@@ -1,24 +1,25 @@
 ﻿namespace Migration.Api;
 
-public class GetJobStatusEndpoint : Endpoint<GetJobStatusRequest, GetJobStatusResponse, GetJobStatusMapper>
+public class GetJobStatusEndpoint(CacheSettings CacheSettings, ThrottleSettings ThrottlingSettings)
+    : Endpoint<GetJobStatusRequest, GetJobStatusResponse, GetJobStatusMapper>
 {
-    //public override void Configure()
-    //{
-    //    Get("/exchange-rates/{currency}/{symbols}/{amount}");
+    public override void Configure()
+    {
+        Get("/jobs/{jobId}/status");
 
-    //    Group<ApiVersion1Group>();
+        Group<ApiVersion1Group>();
 
-    //    ResponseCache(CacheSettings.CacheDurationInSeconds);
+        ResponseCache(CacheSettings.CacheDurationInSeconds);
 
-    //    Options(x => x.CacheOutput(p => p.Expire(CacheSettings.CacheDuration)));
+        Options(x => x.CacheOutput(p => p.Expire(CacheSettings.CacheDuration)));
 
-    //    AllowAnonymous();
-    //    //Policies(CurrencyPolicy.Converter);
+        AllowAnonymous();
+        //Policies(...);
 
-    //    Throttle(ThrottlingSettings.HitLimit, ThrottlingSettings.DurationSeconds);
+        Throttle(ThrottlingSettings.HitLimit, ThrottlingSettings.DurationSeconds);
 
-    //    EnableAntiforgery();
-    //}
+        EnableAntiforgery();
+    }
 
     public override async Task HandleAsync(GetJobStatusRequest getJobStatusRequest, CancellationToken ct)
     {
