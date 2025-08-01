@@ -1,5 +1,8 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-builder.AddProject<Projects.Migration_Api>("migration-api");
+var apiService = builder.AddProject<Projects.Migration_Api>("migration-api")
+    .WithSwaggerUI()
+    .WithScalar()
+    .WithReDoc();
 
 builder.Build().Run();
