@@ -9,7 +9,9 @@ builder.Services
     .AddDomainServices()
     .AddApplicationServices()
     .AddInfrastructureServices()
-    .AddApiServices();
+    .AddApiServices()
+    .AddFastEndpoints();
+    //.AddAntiforgery();
 
 var app = builder.Build();
 
@@ -18,6 +20,8 @@ app.MapDefaultEndpoints();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseOpenApi();
+
     app.MapOpenApi();
 
     app.AddSwagger();
@@ -26,6 +30,8 @@ if (app.Environment.IsDevelopment())
 
     app.AddReDoc();
 }
+
+app.UseFastEndpoints();
 
 app.UseHttpsRedirection();
 

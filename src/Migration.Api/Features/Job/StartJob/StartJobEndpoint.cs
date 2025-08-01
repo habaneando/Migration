@@ -18,7 +18,7 @@ public class StartJobEndpoint(CacheSettings CacheSettings, ThrottleSettings Thro
 
         Throttle(ThrottlingSettings.HitLimit, ThrottlingSettings.DurationSeconds);
 
-        EnableAntiforgery();
+        //EnableAntiforgery();
     }
 
     public override async Task HandleAsync(StartJobRequest startJobRequest, CancellationToken ct)

@@ -5,7 +5,7 @@ public class GetJobLogsEndpoint(CacheSettings CacheSettings, ThrottleSettings Th
 {
     public override void Configure()
     {
-        Get("/jobs/{jobId}/logs?page={page}&pageSize={pageSize}");
+        Get("/jobs/{jobId}/logs");
 
         Group<ApiVersion1Group>();
 
@@ -18,7 +18,7 @@ public class GetJobLogsEndpoint(CacheSettings CacheSettings, ThrottleSettings Th
 
         Throttle(ThrottlingSettings.HitLimit, ThrottlingSettings.DurationSeconds);
 
-        EnableAntiforgery();
+        //EnableAntiforgery();
     }
 
     public override async Task HandleAsync(GetJobLogsRequest getJobLogsRequest, CancellationToken ct)
