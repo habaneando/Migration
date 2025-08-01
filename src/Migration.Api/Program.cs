@@ -19,6 +19,12 @@ app.MapDefaultEndpoints();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+
+    app.AddSwagger();
+
+    app.AddScalar();
+
+    app.AddReDoc();
 }
 
 app.UseHttpsRedirection();
