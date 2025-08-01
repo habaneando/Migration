@@ -23,10 +23,7 @@ public class GetJobLogsEndpoint(CacheSettings CacheSettings, ThrottleSettings Th
 
     public override async Task HandleAsync(GetJobLogsRequest getJobLogsRequest, CancellationToken ct)
     {
-        var getJobLogsCommand = new GetJobLogsCommand(
-            getJobLogsRequest.JobId,
-            getJobLogsRequest.Page,
-            getJobLogsRequest.PageSize);
+        var getJobLogsCommand = Map.ToCommand(getJobLogsRequest);
 
         var getJobLogsEntity = await getJobLogsCommand.ExecuteAsync()
             .ConfigureAwait(false);

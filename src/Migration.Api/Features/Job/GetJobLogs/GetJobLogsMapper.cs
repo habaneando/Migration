@@ -11,4 +11,12 @@ public class GetJobLogsMapper : Mapper<GetJobLogsRequest, GetJobLogsResponse, Jo
             PageSize = jobLogsDto.PageSize,
             TotalLogs = jobLogsDto.TotalLogs
         };
+
+    public GetJobLogsCommand ToCommand(GetJobLogsRequest getJobLogsRequest) =>
+        new
+        (
+            getJobLogsRequest.JobId,
+            getJobLogsRequest.Page,
+            getJobLogsRequest.PageSize
+        );
 }

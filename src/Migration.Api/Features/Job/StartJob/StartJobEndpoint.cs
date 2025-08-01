@@ -23,10 +23,7 @@ public class StartJobEndpoint(CacheSettings CacheSettings, ThrottleSettings Thro
 
     public override async Task HandleAsync(StartJobRequest startJobRequest, CancellationToken ct)
     {
-        var startJobCommand = new StartJobCommand(
-            startJobRequest.JobType,
-            startJobRequest.Data,
-            startJobRequest.Metadata);
+        var startJobCommand = Map.ToCommand(startJobRequest);
 
         var startJobEntity = await startJobCommand.ExecuteAsync()
             .ConfigureAwait(false);

@@ -10,4 +10,12 @@ public class StartJobMapper : Mapper<StartJobRequest, StartJobResponse, StartJob
             CreatedAt = startJobDto.CreatedAt,
             TotalItems = startJobDto.TotalItems
         };
+
+    public StartJobCommand ToCommand(StartJobRequest startJobRequest) =>
+        new
+        (
+            startJobRequest.JobType,
+            startJobRequest.Data,
+            startJobRequest.Metadata
+        );
 }

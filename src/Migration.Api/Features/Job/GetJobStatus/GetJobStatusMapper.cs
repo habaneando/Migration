@@ -13,4 +13,7 @@ public class GetJobStatusMapper : Mapper<GetJobStatusRequest, GetJobStatusRespon
             FailedItems = jobStatusDto.FailedItems,
             TotalItems = jobStatusDto.TotalItems
         };
+
+    public GetJobStatusCommand ToCommand(GetJobStatusRequest getJobStatusRequest) =>
+        new(getJobStatusRequest.JobId);
 }

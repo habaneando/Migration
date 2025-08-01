@@ -23,7 +23,7 @@ public class GetJobStatusEndpoint(CacheSettings CacheSettings, ThrottleSettings 
 
     public override async Task HandleAsync(GetJobStatusRequest getJobStatusRequest, CancellationToken ct)
     {
-        var getJobStatusCommand = new GetJobStatusCommand(getJobStatusRequest.JobId);
+        var getJobStatusCommand = Map.ToCommand(getJobStatusRequest);
 
         var getJobStatusEntity = await getJobStatusCommand.ExecuteAsync()
             .ConfigureAwait(false);
