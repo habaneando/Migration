@@ -10,6 +10,7 @@ builder.Services
     .AddApplicationServices()
     .AddInfrastructureServices()
     .AddApiServices()
+    .AddThrottling()
     .AddFastEndpoints()
     .AddAntiforgery()
     .AddResponseCaching();

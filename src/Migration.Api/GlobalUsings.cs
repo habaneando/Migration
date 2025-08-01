@@ -5,3 +5,5 @@ global using Migration.Infrastructure;
 global using FastEndpoints;
 global using FluentValidation;
 global using Scalar.AspNetCore;
+global using System.Threading.RateLimiting;
+global using Microsoft.AspNetCore.RateLimiting;
