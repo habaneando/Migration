@@ -18,7 +18,7 @@ public class GetJobLogsEndpoint(CacheSettings CacheSettings, ThrottleSettings Th
 
         Throttle(ThrottlingSettings.HitLimit, ThrottlingSettings.DurationSeconds);
 
-        //EnableAntiforgery();
+        EnableAntiforgery();
     }
 
     public override async Task HandleAsync(GetJobLogsRequest getJobLogsRequest, CancellationToken ct)

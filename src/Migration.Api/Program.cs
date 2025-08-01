@@ -10,8 +10,8 @@ builder.Services
     .AddApplicationServices()
     .AddInfrastructureServices()
     .AddApiServices()
-    .AddFastEndpoints();
-    //.AddAntiforgery();
+    .AddFastEndpoints()
+    .AddAntiforgery();
 
 var app = builder.Build();
 
@@ -31,7 +31,8 @@ if (app.Environment.IsDevelopment())
     app.AddReDoc();
 }
 
-app.UseFastEndpoints();
+app.UseAntiforgeryFE()
+   .UseFastEndpoints();
 
 app.UseHttpsRedirection();
 

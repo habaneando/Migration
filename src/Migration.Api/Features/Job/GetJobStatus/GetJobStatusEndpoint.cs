@@ -18,7 +18,7 @@ public class GetJobStatusEndpoint(CacheSettings CacheSettings, ThrottleSettings 
 
         Throttle(ThrottlingSettings.HitLimit, ThrottlingSettings.DurationSeconds);
 
-        //EnableAntiforgery();
+        EnableAntiforgery();
     }
 
     public override async Task HandleAsync(GetJobStatusRequest getJobStatusRequest, CancellationToken ct)
