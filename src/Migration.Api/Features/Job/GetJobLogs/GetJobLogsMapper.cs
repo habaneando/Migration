@@ -12,7 +12,7 @@ public class GetJobLogsMapper : Mapper<GetJobLogsRequest, GetJobLogsResponse, Jo
             TotalLogs = jobLogsDto.TotalLogs
         };
 
-    public GetJobLogsCommand ToCommand(GetJobLogsRequest getJobLogsRequest) =>
+    public GetJobLogsQuery ToQuery(GetJobLogsRequest getJobLogsRequest) =>
         new
         (
             getJobLogsRequest.JobId,

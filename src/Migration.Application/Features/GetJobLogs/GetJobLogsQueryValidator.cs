@@ -1,8 +1,8 @@
 ﻿namespace Migration.Application;
 
-public class GetJobLogsCommandValidator : Validator<GetJobLogsCommand>
+public class GetJobLogsQueryValidator : Validator<GetJobLogsQuery>
 {
-    public GetJobLogsCommandValidator()
+    public GetJobLogsQueryValidator()
     {
         RuleFor(x => x.JobId)
             .NotEmpty()

@@ -14,6 +14,6 @@ public class GetJobStatusMapper : Mapper<GetJobStatusRequest, GetJobStatusRespon
             TotalItems = jobStatusDto.TotalItems
         };
 
-    public GetJobStatusCommand ToCommand(GetJobStatusRequest getJobStatusRequest) =>
+    public GetJobStatusQuery ToQuery(GetJobStatusRequest getJobStatusRequest) =>
         new(getJobStatusRequest.JobId);
 }
