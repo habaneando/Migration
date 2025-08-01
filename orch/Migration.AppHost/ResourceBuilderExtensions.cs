@@ -4,15 +4,15 @@ internal static class ResourceBuilderExtensions
 {
     internal static IResourceBuilder<T> WithSwaggerUI<T>(this IResourceBuilder<T> builder)
         where T : IResourceWithEndpoints =>
-        builder.WithOpenApiDocs("swagger-docs", "Swagger API Doc", "swagger");
+        builder.WithOpenApiDocs("swagger-docs", "Swagger Api Doc", "swagger-docs");
 
     internal static IResourceBuilder<T> WithScalar<T>(this IResourceBuilder<T> builder)
         where T : IResourceWithEndpoints =>
-        builder.WithOpenApiDocs("scalar-docs", "Scalar API Doc", "scalar");
+        builder.WithOpenApiDocs("scalar-docs", "Scalar Api Doc", "scalar-docs");
 
     internal static IResourceBuilder<T> WithReDoc<T>(this IResourceBuilder<T> builder)
         where T : IResourceWithEndpoints =>
-        builder.WithOpenApiDocs("redoc-docs", "ReDoc API Doc", "redoc");
+        builder.WithOpenApiDocs("redoc-docs", "ReDoc Api Doc", "redoc-docs");
 
     private static IResourceBuilder<T> WithOpenApiDocs<T>(
         this IResourceBuilder<T> builder,
