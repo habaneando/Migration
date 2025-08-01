@@ -4,7 +4,7 @@ public sealed record JobLogsDto
 {
     public Guid JobId { get; set; }
 
-    public required List<JobLog> Logs { get; set; }
+    public List<JobLog> Logs { get; set; }
 
     public long TotalLogs { get; set; }
 

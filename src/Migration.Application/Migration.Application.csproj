@@ -16,9 +16,4 @@
     <ProjectReference Include="..\Migration.Domain\Migration.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\GetJobStatus\" />
-    <Folder Include="Features\GetJobLogs\" />
-  </ItemGroup>
-
 </Project>
