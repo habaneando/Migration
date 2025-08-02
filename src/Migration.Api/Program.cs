@@ -13,6 +13,8 @@ builder.Services
     .AddAntiforgery()
     .AddResponseCaching();
 
+builder.AddSerilog();
+
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
@@ -30,10 +32,11 @@ if (app.Environment.IsDevelopment())
     app.AddReDoc();
 }
 
-app.UseResponseCaching()
+app.UseHttpsRedirection()
+   .UseResponseCaching()
    .UseAntiforgeryFE()
-   .UseFastEndpoints();
-
-app.UseHttpsRedirection();
+   .UseFastEndpoints()
+   .UseSerilogRequestLogging()
+   .AddCorrelationIdAndClientIdToRequest();
 
 app.Run();

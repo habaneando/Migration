@@ -14,6 +14,12 @@ public static class DI
 
         services.AddSingleton<StartJobMapper>();
 
+        services.AddSingleton<ILogFormatter, LogFormatter>();
+
+        services.AddSingleton<IExceptionFormatter, ExceptionFormatter>();
+
+        services.AddSingleton<IProblemDetailsFactory, ProblemDetailsFactory>();
+
         return services;
     }
 }
