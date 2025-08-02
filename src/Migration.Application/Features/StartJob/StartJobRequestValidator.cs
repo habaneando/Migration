@@ -1,8 +1,8 @@
 ﻿namespace Migration.Application;
 
-public class StartJobCommandValidator : Validator<StartJobCommand>
+public class StartJobRequestValidator : Validator<StartJobRequest>
 {
-    public StartJobCommandValidator(IJobTypeValidator jobTypeValidator)
+    public StartJobRequestValidator(IJobTypeValidator jobTypeValidator)
     {
         RuleFor(x => x.JobType)
             .SetValidator(jobTypeValidator as AbstractValidator<string>);

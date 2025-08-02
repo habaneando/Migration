@@ -10,7 +10,24 @@ public static class DI
 
         services.AddScoped<IDataJobService, DataJobService>();
 
-        services.AddSingleton<IJobServiceProvider, JobServiceProvider>();
+        services.AddSingleton<IJobServiceProvider>(x =>
+        {
+            var jobServiceProvider = new JobServiceProvider();
+
+            var serviceProvider = services.BuildServiceProvider();
+
+            var bulkService = serviceProvider.GetRequiredService<IBulkJobService>();
+
+            if (bulkService is not null)
+                jobServiceProvider.Add("bulk", bulkService);
+
+            var batchService = serviceProvider.GetRequiredService<IBatchJobService>();
+
+            if (batchService is not null)
+                jobServiceProvider.Add("batch", batchService);
+
+            return jobServiceProvider;
+        } );
 
         return services;
     }

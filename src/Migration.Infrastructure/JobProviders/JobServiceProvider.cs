@@ -9,13 +9,21 @@ public class JobServiceProvider : IJobServiceProvider
         Factories = [];
     }
 
-    public IJobService? TryGet(string type) =>
-        Factories.TryGetValue(type, out var factory)
+    public IJobService? TryGet(string type)
+    {
+        if (string.IsNullOrWhiteSpace(type))
+            return null;
+
+        return Factories.TryGetValue(type.ToUpper(), out var factory)
             ? factory
             : null;
+    }
 
     public void Add(string type, IJobService jobService)
     {
+        if (string.IsNullOrWhiteSpace(type))
+            return;
+
         Factories.TryAdd(type.ToUpper(), jobService);
     }
 }
