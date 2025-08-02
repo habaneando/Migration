@@ -5,7 +5,7 @@ public class StartJobEndpoint(CacheSettings CacheSettings, ThrottleSettings Thro
 {
     public override void Configure()
     {
-        Get("/jobs");
+        Post("/jobs");
 
         Group<ApiVersion1Group>();
 

@@ -6,12 +6,12 @@ public class Job
 
     public List<JobItem> Data { get; private set; } = [];
 
-    public JobMetadataDto? Metadata { get; private set; }
+    public JobMetadata? Metadata { get; private set; }
 
     public Job(
         JobId jobId,
         List<JobItem> data,
-        JobMetadataDto? metadata)
+        JobMetadata? metadata)
     {
         Id = jobId;
         Data = data;

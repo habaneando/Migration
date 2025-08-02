@@ -2,8 +2,8 @@
 
 public sealed record StartJobCommand(
     string JobType,
-    List<JobItem> Data,
-    JobMetadataDto? Metadata)
-    : ICommand<StartJobDto>
+    List<JobItemRequest> Data,
+    JobMetadataRequest? Metadata)
+    : ICommand<StartJob>
 {
 }

@@ -1,6 +1,6 @@
 ﻿namespace Migration.Domain;
 
-public sealed record JobMetadataDto
+public sealed record JobMetadata
 {
     public string? Description { get; set; }
 

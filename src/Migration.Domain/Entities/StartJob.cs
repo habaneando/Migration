@@ -1,6 +1,6 @@
 ﻿namespace Migration.Domain;
 
-public class StartJobDto
+public class StartJob
 {
     public Guid JobId { get; set; }
 
