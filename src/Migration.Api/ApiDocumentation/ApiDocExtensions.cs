@@ -6,7 +6,7 @@ internal static class ApiDocExtensions
     {
         app.UseSwaggerUI(options =>
         {
-            options.SwaggerEndpoint("/openapi/v1.json", "Currency Rate API v1");
+            options.SwaggerEndpoint("/openapi/v1.json", "Swagger Api Documentation");
             options.RoutePrefix = "swagger-docs";
         });
     }
@@ -16,7 +16,7 @@ internal static class ApiDocExtensions
         app.MapScalarApiReference("scalar-docs", options =>
         {
             options
-                .WithTitle("Currency Rate API Documentation")
+                .WithTitle("Scalar Api Documentation")
                 .WithTheme(ScalarTheme.BluePlanet)
                 .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
         });
@@ -26,7 +26,7 @@ internal static class ApiDocExtensions
     {
         app.UseReDoc(options =>
         {
-            options.DocumentTitle = "Currency Rate API Documentation";
+            options.DocumentTitle = "ReDoc Api Documentation";
             options.RoutePrefix = "redoc-docs";
             options.SpecUrl("/openapi/v1.json");
         });
