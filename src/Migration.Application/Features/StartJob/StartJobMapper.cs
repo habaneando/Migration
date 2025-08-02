@@ -1,8 +1,8 @@
-﻿namespace Migration.Api;
+﻿namespace Migration.Application;
 
-public class StartJobMapper : Mapper<StartJobRequest, StartJobResponse, StartJob>
+public class StartJobMapper
 {
-    public override StartJobResponse FromEntity(StartJob startJob) =>
+    public StartJobResponse FromEntity(StartJob startJob) =>
         new(startJob.JobId,
             startJob.Status,
             startJob.TotalItems,

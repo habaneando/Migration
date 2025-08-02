@@ -1,7 +1,10 @@
 ﻿namespace Migration.Api;
 
-public class StartJobEndpoint(CacheSettings CacheSettings, ThrottleSettings ThrottlingSettings)
-    : Endpoint<StartJobRequest, StartJobResponse, StartJobMapper>
+public class StartJobEndpoint(
+    CacheSettings CacheSettings,
+    ThrottleSettings ThrottlingSettings,
+    StartJobMapper Mapper)
+    : Endpoint<StartJobRequest, StartJobResponse>
 {
     public override void Configure()
     {
@@ -23,12 +26,12 @@ public class StartJobEndpoint(CacheSettings CacheSettings, ThrottleSettings Thro
 
     public override async Task HandleAsync(StartJobRequest startJobRequest, CancellationToken ct)
     {
-        var startJobCommand = Map.ToCommand(startJobRequest);
+        var startJobCommand = Mapper.ToCommand(startJobRequest);
 
         var startJobEntity = await startJobCommand.ExecuteAsync()
             .ConfigureAwait(false);
 
-        var startJobResponse = Map.FromEntity(startJobEntity);
+        var startJobResponse = Mapper.FromEntity(startJobEntity);
 
         await Send.OkAsync(startJobResponse, ct)
             .ConfigureAwait(false);

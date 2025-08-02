@@ -8,6 +8,12 @@ public static class DI
 
         services.AddSingleton<ThrottleSettings>();
 
+        services.AddSingleton<GetJobLogsMapper>();
+
+        services.AddSingleton<GetJobStatusMapper>();
+
+        services.AddSingleton<StartJobMapper>();
+
         return services;
     }
 }

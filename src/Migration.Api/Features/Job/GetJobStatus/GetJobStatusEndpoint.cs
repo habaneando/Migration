@@ -1,7 +1,10 @@
 ﻿namespace Migration.Api;
 
-public class GetJobStatusEndpoint(CacheSettings CacheSettings, ThrottleSettings ThrottlingSettings)
-    : Endpoint<GetJobStatusRequest, GetJobStatusResponse, GetJobStatusMapper>
+public class GetJobStatusEndpoint(
+    CacheSettings CacheSettings,
+    ThrottleSettings ThrottlingSettings,
+    GetJobStatusMapper Mapper)
+    : Endpoint<GetJobStatusRequest, GetJobStatusResponse>
 {
     public override void Configure()
     {
@@ -23,12 +26,12 @@ public class GetJobStatusEndpoint(CacheSettings CacheSettings, ThrottleSettings 
 
     public override async Task HandleAsync(GetJobStatusRequest getJobStatusRequest, CancellationToken ct)
     {
-        var getJobStatusQuery = Map.ToQuery(getJobStatusRequest);
+        var getJobStatusQuery = Mapper.ToQuery(getJobStatusRequest);
 
         var getJobStatusEntity = await getJobStatusQuery.ExecuteAsync()
             .ConfigureAwait(false);
 
-        var getJobStatusResponse = Map.FromEntity(getJobStatusEntity);
+        var getJobStatusResponse = Mapper.FromEntity(getJobStatusEntity);
 
         await Send.OkAsync(getJobStatusResponse, ct)
             .ConfigureAwait(false);

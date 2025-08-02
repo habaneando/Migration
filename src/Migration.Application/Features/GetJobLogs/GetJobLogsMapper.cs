@@ -1,8 +1,8 @@
-﻿namespace Migration.Api;
+﻿namespace Migration.Application;
 
-public class GetJobLogsMapper : Mapper<GetJobLogsRequest, GetJobLogsResponse, JobLogs>
+public class GetJobLogsMapper
 {
-    public override GetJobLogsResponse FromEntity(JobLogs jobLogs) =>
+    public GetJobLogsResponse FromEntity(JobLogs jobLogs) =>
         new(jobLogs.JobId,
             jobLogs.Logs.Select(x =>
                 new JobLogResponse(

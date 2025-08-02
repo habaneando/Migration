@@ -1,8 +1,8 @@
-﻿namespace Migration.Api;
+﻿namespace Migration.Application;
 
-public class GetJobStatusMapper : Mapper<GetJobStatusRequest, GetJobStatusResponse, JobStatusItem>
+public class GetJobStatusMapper
 {
-    public override GetJobStatusResponse FromEntity(JobStatusItem jobStatusItem) =>
+    public GetJobStatusResponse FromEntity(JobStatusItem jobStatusItem) =>
         new(jobStatusItem.JobId,
             jobStatusItem.Status,
             jobStatusItem.TotalItems,
