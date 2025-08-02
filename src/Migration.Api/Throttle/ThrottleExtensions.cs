@@ -1,6 +1,6 @@
 ﻿namespace Migration.Api;
 
-public static class ThrottlingExtensions
+public static class ThrottleExtensions
 {
     /// <summary>
     /// Throttling: limit the number of requests a client can make within a specified time window
