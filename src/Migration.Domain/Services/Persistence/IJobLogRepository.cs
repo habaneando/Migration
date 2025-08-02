@@ -4,5 +4,5 @@ public interface IJobLogRepository : IRepository
 {
     Task Add(JobLog jobLog);
 
-    Task<JobLogsDto> GetByJobId(JobId jobId, int? page, int? pageSize);
+    Task<JobLogs> GetByJobId(JobId jobId, int? page, int? pageSize);
 }

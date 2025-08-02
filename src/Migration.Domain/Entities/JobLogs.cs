@@ -1,10 +1,10 @@
-﻿namespace Migration.Api;
+﻿namespace Migration.Domain;
 
-public class GetJobLogsResponse
+public sealed record JobLogs
 {
     public Guid JobId { get; set; }
 
-    public required List<JobLog> Logs { get; set; }
+    public List<JobLog> Logs { get; set; } = [];
 
     public long TotalLogs { get; set; }
 

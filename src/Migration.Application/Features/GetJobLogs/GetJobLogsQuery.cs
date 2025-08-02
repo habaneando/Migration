@@ -1,8 +1,8 @@
 ﻿namespace Migration.Application;
 
 public sealed record GetJobLogsQuery(
-    string JobId,
+    Guid JobId,
     int? Page,
-    int? PageSize) : IQuery<JobLogsDto>
+    int? PageSize) : IQuery<JobLogs>
 {
 }

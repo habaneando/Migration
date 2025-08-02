@@ -1,16 +1,18 @@
 ﻿namespace Migration.Api;
 
-public class GetJobLogsMapper : Mapper<GetJobLogsRequest, GetJobLogsResponse, JobLogsDto>
+public class GetJobLogsMapper : Mapper<GetJobLogsRequest, GetJobLogsResponse, JobLogs>
 {
-    public override GetJobLogsResponse FromEntity(JobLogsDto jobLogsDto) =>
-        new()
-        {
-            JobId = jobLogsDto.JobId,
-            Logs = jobLogsDto.Logs,
-            Page = jobLogsDto.Page,
-            PageSize = jobLogsDto.PageSize,
-            TotalLogs = jobLogsDto.TotalLogs
-        };
+    public override GetJobLogsResponse FromEntity(JobLogs jobLogs) =>
+        new(jobLogs.JobId,
+            jobLogs.Logs.Select(x =>
+                new JobLogResponse(
+                    x.Id,
+                    x.Status,
+                    x.Description,
+                    x.ProcessedAt)).ToList(),
+            jobLogs.TotalLogs,
+            jobLogs.Page,
+            jobLogs.PageSize);
 
     public GetJobLogsQuery ToQuery(GetJobLogsRequest getJobLogsRequest) =>
         new
