@@ -4,5 +4,5 @@ public interface IJobRepository : IRepository
 {
     Task Add(Job job);
 
-    Task<JobStatusDto> GetStatusById(JobId jobId);
+    Task<JobStatusItem> GetStatusById(JobId jobId);
 }

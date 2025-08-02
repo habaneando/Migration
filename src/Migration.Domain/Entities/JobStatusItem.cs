@@ -1,6 +1,6 @@
-﻿namespace Migration.Api;
+﻿namespace Migration.Domain;
 
-public class GetJobStatusResponse
+public sealed record JobStatusItem
 {
     public Guid JobId { get; set; }
 

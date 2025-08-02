@@ -5,6 +5,6 @@ public class JobRepository : IJobRepository
     public Task Add(Job job) =>
         throw new NotImplementedException();
 
-    public Task<JobStatusDto> GetStatusById(JobId jobId) =>
+    public Task<JobStatusItem> GetStatusById(JobId jobId) =>
         throw new NotImplementedException();
 }

@@ -1,9 +1,9 @@
 ﻿namespace Migration.Application;
 
-public class GetJobStatusQueryHandler : IQueryHandler<GetJobStatusQuery, JobStatusDto>
+public class GetJobStatusQueryHandler : IQueryHandler<GetJobStatusQuery, JobStatusItem>
 {
-    public Task<JobStatusDto> ExecuteAsync(GetJobStatusQuery getJobStatusQuery, CancellationToken ct)
+    public Task<JobStatusItem> ExecuteAsync(GetJobStatusQuery getJobStatusQuery, CancellationToken ct)
     {
-        return Task.FromResult(new JobStatusDto());
+        return Task.FromResult(new JobStatusItem());
     }
 }
