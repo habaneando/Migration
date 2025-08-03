@@ -1,19 +1,11 @@
 ﻿namespace Migration.Application;
 
-public class GetJobLogsQueryHandler(
-    IJobLogRepository JobLogRepository,
-    JobId.Factory JobIdFactory)
+public class GetJobLogsQueryHandler(IGetJobLogsService GetJobLogsService)
     : IQueryHandler<GetJobLogsQuery, JobLogs>
 {
-    public async Task<JobLogs> ExecuteAsync(GetJobLogsQuery getJobLogsQuery, CancellationToken ct)
-    {
-        var joblogs = await JobLogRepository
-            .GetByJobIdAsync(
-                JobIdFactory.Create(getJobLogsQuery.JobId),
-                getJobLogsQuery.Page,
-                getJobLogsQuery.PageSize)
-            .ConfigureAwait(false);
-
-        return joblogs;
-    }
+    public Task<JobLogs> ExecuteAsync(GetJobLogsQuery getJobLogsQuery, CancellationToken ct) =>
+        GetJobLogsService.GetLogsByJobIdAsync(
+            getJobLogsQuery.JobId,
+            getJobLogsQuery.Page,
+            getJobLogsQuery.PageSize);
 }

@@ -12,22 +12,28 @@ public class JobProcessingService : IJobProcessingService
 
     private readonly ILogger<JobProcessingService> _logger;
 
+    private readonly JobId.Factory _jobIdFactory;
+
     public JobProcessingService(
         IJobRepository jobRepository,
         IJobLogRepository jobLogRepository,
         IDataProcessingService dataProcessingService,
         IUnitOfWork unitOfWork,
-        ILogger<JobProcessingService> logger)
+        ILogger<JobProcessingService> logger,
+        JobId.Factory jobIdFactory)
     {
         _jobRepository = jobRepository;
         _jobLogRepository = jobLogRepository;
         _dataProcessingService = dataProcessingService;
         _unitOfWork = unitOfWork;
         _logger = logger;
+        _jobIdFactory = jobIdFactory;
     }
 
-    public async Task ProcessJobAsync(JobId jobId, CancellationToken cancellationToken = default)
+    public async Task ProcessJobAsync(Guid guid, CancellationToken cancellationToken = default)
     {
+        var jobId = _jobIdFactory.Create(guid);
+
         _logger.LogInformation("Processing job {JobId}", jobId);
 
         var job = await _jobRepository

@@ -2,5 +2,5 @@
 
 public interface IJobProcessingService
 {
-    Task ProcessJobAsync(JobId jobId, CancellationToken cancellationToken = default);
+    Task ProcessJobAsync(Guid guid, CancellationToken cancellationToken = default);
 }

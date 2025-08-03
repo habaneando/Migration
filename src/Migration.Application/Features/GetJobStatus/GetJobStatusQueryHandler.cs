@@ -1,14 +1,8 @@
 ﻿namespace Migration.Application;
 
-public class GetJobStatusQueryHandler(
-    IJobRepository JobRepository,
-    JobId.Factory JobIdFactory)
+public class GetJobStatusQueryHandler(IGetJobStatusService GetJobStatusService)
     : IQueryHandler<GetJobStatusQuery, JobStatusItem>
 {
-    public async Task<JobStatusItem> ExecuteAsync(GetJobStatusQuery getJobStatusQuery, CancellationToken ct)
-    {
-        var jobStatusItem = await JobRepository.GetStatusByIdAsync(JobIdFactory.Create(getJobStatusQuery.JobId));
-
-        return jobStatusItem;
-    }
+    public Task<JobStatusItem> ExecuteAsync(GetJobStatusQuery getJobStatusQuery, CancellationToken ct) =>
+        GetJobStatusService.GetStatusByIdAsync(getJobStatusQuery.JobId);
 }

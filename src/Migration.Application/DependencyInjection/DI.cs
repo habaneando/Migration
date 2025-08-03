@@ -8,6 +8,10 @@ public static class DI
 
         services.AddScoped<IJobProcessingService, JobProcessingService>();
 
+        services.AddScoped<IGetJobStatusService, GetJobStatusService>();
+
+        services.AddScoped<IGetJobLogsService, GetJobLogsService>();
+
         return services;
     }
 }
