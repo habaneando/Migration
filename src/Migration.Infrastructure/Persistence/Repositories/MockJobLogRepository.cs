@@ -3,8 +3,8 @@
 public class MockJobLogRepository(JobItemId.Factory JobItemIdFactory)
     : IJobLogRepository
 {
-    public Task AddAsync(JobLog jobLog) =>
-        throw new NotImplementedException();
+    public Task UpdateAsync(JobLog jobLog) =>
+        Task.CompletedTask;
 
     public async Task<JobLogs> GetByJobIdAsync(JobId jobId, int? page, int? pageSize)
     {

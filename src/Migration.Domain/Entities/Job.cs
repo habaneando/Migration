@@ -22,9 +22,6 @@ public class Job
         Metadata = metadata;
     }
 
-    public void ProcessItem(JobLog jobLog)
-    { }
-
     public bool HasData =>
         Data is not null && Data?.Count > 0;
 

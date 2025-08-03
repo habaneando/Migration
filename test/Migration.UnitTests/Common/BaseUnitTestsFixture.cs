@@ -1,6 +1,4 @@
-﻿using Migration.Domain;
-
-namespace Migration.UnitTests;
+﻿namespace Migration.UnitTests;
 
 public class BaseUnitTestsFixture : BaseDisposable
 {

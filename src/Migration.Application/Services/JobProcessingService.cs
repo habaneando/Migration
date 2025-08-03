@@ -4,6 +4,8 @@ public class JobProcessingService : IJobProcessingService
 {
     private readonly IJobRepository _jobRepository;
 
+    private readonly IJobLogRepository _jobLogRepository;   
+
     private readonly IDataProcessingService _dataProcessingService;
 
     private readonly IUnitOfWork _unitOfWork;
@@ -12,11 +14,13 @@ public class JobProcessingService : IJobProcessingService
 
     public JobProcessingService(
         IJobRepository jobRepository,
+        IJobLogRepository jobLogRepository,
         IDataProcessingService dataProcessingService,
         IUnitOfWork unitOfWork,
         ILogger<JobProcessingService> logger)
     {
         _jobRepository = jobRepository;
+        _jobLogRepository = jobLogRepository;
         _dataProcessingService = dataProcessingService;
         _unitOfWork = unitOfWork;
         _logger = logger;
@@ -36,9 +40,18 @@ public class JobProcessingService : IJobProcessingService
             return;
         }
 
-        var pendingItems = job.Data
-            .Where(x => x.Status == JobItemStatus.Pending)
-            .ToList();
+        await ProcessJobItems(jobId, job, cancellationToken)
+            .ConfigureAwait(false);
+
+        _logger.LogInformation("Completed processing for job {JobId}",jobId);
+    }
+
+    private async Task ProcessJobItems(
+        JobId jobId,
+        Job job,
+        CancellationToken cancellationToken = default)
+    {
+        var pendingItems = job.Data.Where(x => x.Status == JobItemStatus.Pending);
 
         foreach (var item in pendingItems)
         {
@@ -50,9 +63,11 @@ public class JobProcessingService : IJobProcessingService
                     .ProcessItemAsync(item, cancellationToken)
                     .ConfigureAwait(false);
 
-                job.ProcessItem(jobLog);
+                await _jobLogRepository.UpdateAsync(jobLog)
+                    .ConfigureAwait(false);
 
-                await _unitOfWork.CommitAsync(cancellationToken);
+                await _unitOfWork.CommitAsync(cancellationToken)
+                    .ConfigureAwait(false);
 
                 if (jobLog.Status == JobLogStatus.Failure &&
                     job.Type == JobType.Batch)
@@ -70,15 +85,15 @@ public class JobProcessingService : IJobProcessingService
                     JobLogStatus.Failure,
                     $"Processing error: {ex.Message}");
 
-                job.ProcessItem(jobLog);
+                await _jobLogRepository.UpdateAsync(jobLog)
+                    .ConfigureAwait(false);
 
-                await _unitOfWork.CommitAsync(cancellationToken);
+                await _unitOfWork.CommitAsync(cancellationToken)
+                    .ConfigureAwait(false);
 
                 if (job.Type == JobType.Batch)
                     break;
             }
         }
-
-        _logger.LogInformation("Completed processing for job {JobId}",jobId);
     }
 }

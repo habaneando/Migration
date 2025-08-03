@@ -1,9 +1,13 @@
 ﻿namespace Migration.Application;
 
-public class StartJobCommandHandler : ICommandHandler<StartJobCommand, StartJob>
+public class StartJobCommandHandler(
+    IJobProcessingService JobProcessingService,
+    JobId.Factory JobIdFactory)
+    : ICommandHandler<StartJobCommand>
 {
-    public Task<StartJob> ExecuteAsync(StartJobCommand startJobCommand, CancellationToken ct)
+    public async Task ExecuteAsync(StartJobCommand startJobCommand, CancellationToken ct)
     {
-        return Task.FromResult(new StartJob());
+        await JobProcessingService.ProcessJobAsync(JobIdFactory.Create(startJobCommand.JobId), ct)
+            .ConfigureAwait(false);
     }
 }

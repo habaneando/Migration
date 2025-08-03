@@ -8,10 +8,8 @@ public class StartJobMapper
             startJob.CreatedAt);
 
     public StartJobCommand ToCommand(StartJobRequest startJobRequest) =>
-        new
-        (
+        new(startJobRequest.JobId,
             startJobRequest.JobType,
             startJobRequest.Data,
-            startJobRequest.Metadata
-        );
+            startJobRequest.Metadata);
 }

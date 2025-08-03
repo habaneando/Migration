@@ -28,12 +28,10 @@ public class StartJobEndpoint(
     {
         var startJobCommand = Mapper.ToCommand(startJobRequest);
 
-        var startJobEntity = await startJobCommand.ExecuteAsync()
+        await startJobCommand.ExecuteAsync()
             .ConfigureAwait(false);
 
-        var startJobResponse = Mapper.FromEntity(startJobEntity);
-
-        await Send.OkAsync(startJobResponse, ct)
+        await Send.OkAsync(ct)
             .ConfigureAwait(false);
     }
 }

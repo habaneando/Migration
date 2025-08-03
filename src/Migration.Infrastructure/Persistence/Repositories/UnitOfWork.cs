@@ -3,8 +3,8 @@
 public class UnitOfWork : IUnitOfWork
 {
     public Task CommitAsync(CancellationToken ct) =>
-        throw new NotImplementedException();
+        Task.CompletedTask;
 
     public Task RollBackAsync(CancellationToken ct) =>
-        throw new NotImplementedException();
+        Task.CompletedTask;
 }
