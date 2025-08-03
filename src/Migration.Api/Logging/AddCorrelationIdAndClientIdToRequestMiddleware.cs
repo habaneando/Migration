@@ -17,7 +17,7 @@ public class AddCorrelationIdAndClientIdToRequestMiddleware(
     /// </summary>
     /// <param name="context"></param>
     /// <returns></returns>
-    public Task Invoke(HttpContext context)
+    public async Task InvokeAsync(HttpContext context)
     {
         string correlationId = GetCorrelationId(context);
 
@@ -28,13 +28,11 @@ public class AddCorrelationIdAndClientIdToRequestMiddleware(
             using (LogContext.PushProperty("CorrelationId", correlationId))
             using (LogContext.PushProperty("ClientId", clientId))
             {
-                var result = Next.Invoke(context);
+                await Next.Invoke(context);
 
                 var logFormatted = LogFormatter.Format(context);
 
                 Logger.LogInformation(logFormatted);
-
-                return result;
             }
         }
         catch (Exception ex)
@@ -51,7 +49,7 @@ public class AddCorrelationIdAndClientIdToRequestMiddleware(
 
             var problemDetails = ProblemDetailsFactory.Create(ex);
 
-            return context.Response.WriteAsJsonAsync(problemDetails);
+            await context.Response.WriteAsJsonAsync(problemDetails);
         }
     }
 
