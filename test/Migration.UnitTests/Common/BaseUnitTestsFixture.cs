@@ -1,4 +1,6 @@
-﻿namespace Migration.UnitTests;
+﻿using Migration.Domain;
+
+namespace Migration.UnitTests;
 
 public class BaseUnitTestsFixture : BaseDisposable
 {
@@ -7,6 +9,10 @@ public class BaseUnitTestsFixture : BaseDisposable
     public BaseUnitTestsFixture()
     {
         var services = new ServiceCollection();
+
+        services.AddSingleton<JobId.Factory>();
+
+        services.AddSingleton<JobItemId.Factory>();
 
         ServiceProvider = services.BuildServiceProvider();
     }

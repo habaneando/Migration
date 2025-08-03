@@ -13,5 +13,10 @@ public sealed record JobItemId
     {
         public JobItemId Create() =>
             new(Guid.NewGuid());
+
+        public JobItemId Create(Guid guid) =>
+            (guid != Guid.Empty)
+                ? new(guid)
+                : throw new InvalidJobItemIdCreationException();
     }
 }

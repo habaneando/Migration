@@ -14,7 +14,7 @@ public class JobServiceProvider : IJobServiceProvider
         if (string.IsNullOrWhiteSpace(type))
             return null;
 
-        return Factories.TryGetValue(type.ToUpper(), out var factory)
+        return Factories.TryGetValue(type.ToUpperInvariant(), out var factory)
             ? factory
             : null;
     }
@@ -24,6 +24,6 @@ public class JobServiceProvider : IJobServiceProvider
         if (string.IsNullOrWhiteSpace(type))
             return;
 
-        Factories.TryAdd(type.ToUpper(), jobService);
+        Factories.TryAdd(type.ToUpperInvariant(), jobService);
     }
 }
