@@ -1,4 +1,4 @@
-﻿namespace Migration.Domain;
+﻿namespace Migration.Application;
 
 public interface IBatchJobService : IJobService
 {
