@@ -6,10 +6,9 @@ public class GetJobLogsMapper
         new(jobLogs.JobId,
             jobLogs.Logs.Select(x =>
                 new JobLogResponse(
-                    x.Id,
+                    x.Id.Id,
                     x.Status,
-                    x.Description,
-                    x.ProcessedAt)).ToList(),
+                    x.Description)).ToList(),
             jobLogs.TotalLogs,
             jobLogs.Page,
             jobLogs.PageSize);

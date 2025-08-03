@@ -2,7 +2,7 @@
 
 public interface IJobLogRepository : IRepository
 {
-    Task Add(JobLog jobLog);
+    Task AddAsync(JobLog jobLog);
 
-    Task<JobLogs> GetByJobId(JobId jobId, int? page, int? pageSize);
+    Task<JobLogs> GetByJobIdAsync(JobId jobId, int? page, int? pageSize);
 }

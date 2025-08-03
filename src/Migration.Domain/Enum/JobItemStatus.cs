@@ -2,6 +2,9 @@
 
 public  enum JobItemStatus
 {
-    Success,
-    Failure
+    Created,
+    Pending,
+    Processing,
+    Completed,
+    Failed
 }

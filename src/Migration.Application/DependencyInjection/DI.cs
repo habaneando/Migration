@@ -6,6 +6,8 @@ public static class DI
     {
         services.AddSingleton<IJobTypeValidator, JobTypeValidator>();
 
+        services.AddScoped<IJobProcessingService, JobProcessingService>();
+
         return services;
     }
 }

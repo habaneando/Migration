@@ -2,9 +2,12 @@
 
 public class JobRepository : IJobRepository
 {
-    public Task Add(Job job) =>
+    public Task AddAsync(Job job, CancellationToken cancellationToken = default) =>
         throw new NotImplementedException();
 
-    public Task<JobStatusItem> GetStatusById(JobId jobId) =>
+    public Task<Job> GetByIdAsync(JobId jobId, CancellationToken cancellationToken = default) =>
+        throw new NotImplementedException();
+
+    public Task<JobStatusItem> GetStatusByIdAsync(JobId jobId, CancellationToken cancellationToken = default) =>
         throw new NotImplementedException();
 }

@@ -2,7 +2,9 @@
 
 public interface IJobRepository : IRepository
 {
-    Task Add(Job job);
+    Task AddAsync(Job job, CancellationToken cancellationToken = default);
 
-    Task<JobStatusItem> GetStatusById(JobId jobId);
+    Task<Job> GetByIdAsync(JobId jobId, CancellationToken cancellationToken = default);
+
+    Task<JobStatusItem> GetStatusByIdAsync(JobId jobId, CancellationToken cancellationToken = default);
 }

@@ -2,4 +2,7 @@
 
 public interface IUnitOfWork
 {
+    Task CommitAsync(CancellationToken ct);
+
+    Task RollBackAsync(CancellationToken ct);
 }

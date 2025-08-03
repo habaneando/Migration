@@ -7,7 +7,8 @@ public class JobData
        {
             new object[]
             {
-                Guid.NewGuid()
+                Guid.NewGuid(),
+                JobType.Bulk
             },
        };
 
@@ -30,7 +31,8 @@ public class JobData
                     Guid.NewGuid(),
                     Guid.NewGuid(),
                     Guid.NewGuid()
-                }
+                },
+                JobType.Batch
             },
        };
 
@@ -39,6 +41,7 @@ public class JobData
        {
             new object[]
             {
+                JobType.Bulk,
                 new JobMetadata
                 {
                     Description = "Test job",

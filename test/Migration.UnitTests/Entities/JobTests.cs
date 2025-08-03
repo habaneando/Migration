@@ -9,11 +9,11 @@ public class JobTests : BaseUnitTests<BaseUnitTestsFixture>
 
     [Theory]
     [MemberData(nameof(JobData.CreateJob_GivenValidGuid_ShouldBeSuccess), MemberType = typeof(JobData))]
-    public void CreateJob_GivenValidGuid_ShouldBeSuccess(Guid guid)
+    public void CreateJob_GivenValidGuid_ShouldBeSuccess(Guid guid, JobType jobType)
     {
         var id = JobIdFactory.Create(guid);
 
-        var job = new Job(id, null, null);
+        var job = new Job(id, jobType, null, null);
 
         job.ShouldNotBeNull();
 
@@ -34,13 +34,18 @@ public class JobTests : BaseUnitTests<BaseUnitTestsFixture>
 
     [Theory]
     [MemberData(nameof(JobData.CreateJob_GivenData_ShouldInitializesData), MemberType = typeof(JobData))]
-    public void CreateJob_GivenData_ShouldInitializesData(List<Guid> guids)
+    public void CreateJob_GivenData_ShouldInitializesData(List<Guid> guids, JobType jobType)
     {
         var id = JobIdFactory.Create();
 
-        var data = guids.Select(x => new JobItem(JobItemIdFactory.Create(x), "anyValue")).ToList();
+        var data = guids.Select(x =>
+            new JobItem(
+                JobItemIdFactory.Create(x),
+                "anyValue",
+                JobItemStatus.Created))
+            .ToList();
 
-        var job = new Job(id, data, null);
+        var job = new Job(id, jobType, data, null);
 
         job.ShouldNotBeNull();
 
@@ -51,11 +56,11 @@ public class JobTests : BaseUnitTests<BaseUnitTestsFixture>
 
     [Theory]
     [MemberData(nameof(JobData.CreateJob_GivenMetadata_ShouldInitializesMetadata), MemberType = typeof(JobData))]
-    public void CreateJob_GivenMetadata_ShouldInitializesMetadata(JobMetadata jobMetadata)
+    public void CreateJob_GivenMetadata_ShouldInitializesMetadata(JobType jobType, JobMetadata jobMetadata)
     {
         var id = JobIdFactory.Create();
 
-        var job = new Job(id, null, jobMetadata);
+        var job = new Job(id, jobType, null, jobMetadata);
 
         job.ShouldNotBeNull();
 

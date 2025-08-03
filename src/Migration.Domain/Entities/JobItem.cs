@@ -6,9 +6,12 @@ public  class JobItem
 
     public object Data { get; private set; }
 
-    public JobItem(JobItemId id, object data)
+    public JobItemStatus Status { get; private set; }
+
+    public JobItem(JobItemId id, object data, JobItemStatus status)
     {
         Id = id;
         Data = data;
+        Status = status;
     }
 }

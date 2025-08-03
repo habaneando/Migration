@@ -8,7 +8,9 @@ public static class DI
 
         services.AddScoped<IJobLogRepository, JobLogRepository>();
 
-        services.AddScoped<IDataJobService, DataJobService>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        services.AddScoped<IDataProcessingService, DataProcessingService>();
 
         services.AddSingleton<IJobServiceProvider>(x =>
         {
