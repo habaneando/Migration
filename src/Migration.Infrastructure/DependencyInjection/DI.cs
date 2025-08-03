@@ -8,7 +8,7 @@ public static class DI
 
         services.AddScoped<IJobLogRepository, MockJobLogRepository>();
 
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<IUnitOfWork, MockUnitOfWork>();
 
         services.AddScoped<IDataProcessingService, DataProcessingService>();
 

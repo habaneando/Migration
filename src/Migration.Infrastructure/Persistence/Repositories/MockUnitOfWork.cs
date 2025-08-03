@@ -1,6 +1,6 @@
 ﻿namespace Migration.Infrastructure;
 
-public class UnitOfWork : IUnitOfWork
+public class MockUnitOfWork : IUnitOfWork
 {
     public Task CommitAsync(CancellationToken ct) =>
         Task.CompletedTask;
