@@ -4,7 +4,7 @@ public static class DI
 {
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services)
     {
-        services.AddScoped<IJobRepository, JobRepository>();
+        services.AddScoped<IJobRepository, MockJobRepository>();
 
         services.AddScoped<IJobLogRepository, MockJobLogRepository>();
 
