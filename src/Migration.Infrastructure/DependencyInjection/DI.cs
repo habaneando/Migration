@@ -6,7 +6,7 @@ public static class DI
     {
         services.AddScoped<IJobRepository, JobRepository>();
 
-        services.AddScoped<IJobLogRepository, JobLogRepository>();
+        services.AddScoped<IJobLogRepository, MockJobLogRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 

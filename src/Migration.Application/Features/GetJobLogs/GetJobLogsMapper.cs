@@ -8,10 +8,8 @@ public class GetJobLogsMapper
                 new JobLogResponse(
                     x.Id.Id,
                     x.Status,
-                    x.Description)).ToList(),
-            jobLogs.TotalLogs,
-            jobLogs.Page,
-            jobLogs.PageSize);
+                    x.Description))
+            .ToList());
 
     public GetJobLogsQuery ToQuery(GetJobLogsRequest getJobLogsRequest) =>
         new
