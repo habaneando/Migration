@@ -19,7 +19,6 @@ Repository Pattern: Data access abstraction
 Unit of Work Pattern: Transaction management
 Strategy Pattern: Different job processing strategies (BULK vs BATCH)
 Factory Pattern: Job creation based on type
-Observer Pattern: Job status updates and logging
 
 ## Folder Structure
 - `orch/`: Orchestration projects (`AppHost` and `ServiceDefaults`).
@@ -64,8 +63,8 @@ Observer Pattern: Job status updates and logging
 -	    └─ deploy-prod.yaml       #CD pipeline for deployment to production environment
 	
 ## Getting Started
-1. Clone the repo: `git clone <repo-url>`
-2. Run the orchestrator: `dotnet run --project orc/MyApp.AppHost`
+1. Clone the repo: `git clone <https://github.com/habaneando/Migration>`
+2. Run the orchestrator: `dotnet run --project orc/Migration.AppHost`
 
 ## Key Features
 Job Processing: BULK (continues on failure) and BATCH (stops on failure) job types
