@@ -12,14 +12,18 @@ builder.Services
     .AddThrottling()
     .AddFastEndpoints()
     .AddCors(builder.Configuration)
+    .AddComponentHealthChecks()
     .AddAntiforgery()
-    .AddResponseCaching();
+    .AddResponseCaching()
+    .AddDatabase(builder.Configuration);
 
 builder.AddSerilog();
 
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
+
+app.MapHealthChecks("/health");
 
 if (app.Environment.IsDevelopment())
 {
