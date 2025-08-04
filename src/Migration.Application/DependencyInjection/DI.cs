@@ -8,6 +8,8 @@ public static class DI
 
         services.AddScoped<IBatchJobService, BatchJobService>();
 
+        services.AddScoped<IBackgroundJobScheduler, BackgroundJobScheduler>();
+
         services.AddSingleton<IJobTypeValidator, JobTypeValidator>();
 
         services.AddScoped<IJobProcessingService, JobProcessingService>();
