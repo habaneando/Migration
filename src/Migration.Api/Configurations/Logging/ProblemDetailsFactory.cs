@@ -2,13 +2,13 @@
 
 public class ProblemDetailsFactory : IProblemDetailsFactory
 {
-    public ProblemDetails Create(Exception ex) =>
-        new ProblemDetails
+    public FastEndpoints.ProblemDetails Create(Exception ex) =>
+        new FastEndpoints.ProblemDetails
         {
             Status = 1,
             TraceId = "",
             Detail = "",
             Instance = "",
-            Errors = new List<ProblemDetails.Error>()
+            Errors = new List<FastEndpoints.ProblemDetails.Error>()
         };
 }

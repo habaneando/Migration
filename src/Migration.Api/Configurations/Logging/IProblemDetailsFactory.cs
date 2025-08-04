@@ -2,5 +2,5 @@
 
 public interface IProblemDetailsFactory
 {
-    ProblemDetails Create(Exception ex);
+    FastEndpoints.ProblemDetails Create(Exception ex);
 }

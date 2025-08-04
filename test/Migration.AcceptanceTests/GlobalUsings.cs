@@ -1,1 +1,11 @@
-﻿global using Microsoft.Extensions.DependencyInjection;
+﻿global using Microsoft.AspNetCore.Hosting;
+global using Microsoft.AspNetCore.Mvc.Testing;
+global using Microsoft.Extensions.DependencyInjection;
+global using Migration.Application;
+global using Migration.Common;
+global using Migration.Domain;
+global using Migration.Api;
+global using Migration.Infrastructure;
+global using NSubstitute;
+global using Refit;
+global using Shouldly;

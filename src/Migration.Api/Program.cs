@@ -46,3 +46,6 @@ app.UseHttpsRedirection()
    .AddCorrelationIdAndClientIdToRequest();
 
 app.Run();
+
+// Required for WebApplicationFactory
+public partial class Program { }
