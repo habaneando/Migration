@@ -8,6 +8,7 @@ builder.Services
     .AddApplicationServices()
     .AddInfrastructureServices()
     .AddApiServices()
+    .AddJwtAuthentication()
     .AddThrottling()
     .AddFastEndpoints()
     .AddAntiforgery()
