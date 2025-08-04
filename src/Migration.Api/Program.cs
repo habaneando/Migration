@@ -11,6 +11,7 @@ builder.Services
     .AddJwtAuthentication()
     .AddThrottling()
     .AddFastEndpoints()
+    .AddCors(builder.Configuration)
     .AddAntiforgery()
     .AddResponseCaching();
 

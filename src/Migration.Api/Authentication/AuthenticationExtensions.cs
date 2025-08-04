@@ -23,4 +23,34 @@ public static class AuthenticationExtensions
 
         return services;
     }
+
+    public static IServiceCollection AddCors(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddCors(options =>
+        {
+            options.AddPolicy("DefaultCorsPolicy", policy =>
+            {
+                var allowedOrigins = configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? Array.Empty<string>();
+
+                if (allowedOrigins.Any())
+                {
+                    policy.WithOrigins(allowedOrigins);
+                }
+                else
+                {
+                    policy.AllowAnyOrigin();
+                }
+
+                policy.AllowAnyMethod()
+                      .AllowAnyHeader();
+
+                if (allowedOrigins.Any() && !allowedOrigins.Contains("*"))
+                {
+                    policy.AllowCredentials();
+                }
+            });
+        });
+
+        return services;
+    }
 }
