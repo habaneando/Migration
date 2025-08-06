@@ -1,6 +1,6 @@
 ﻿namespace Migration.Domain;
 
-public  enum JobItemStatus
+public enum JobItemStatus
 {
     Created,
     Pending,

@@ -14,7 +14,11 @@ public class BaseAcceptanceTestsFixture : BaseDisposable
 
         var baseAddress = new Uri("https://localhost:7157");
 
-        services.AddRefitClientService<IJobLogsApi>(baseAddress);
+        services.AddRefitClientService<IGetJobLogsApi>(baseAddress);
+
+        services.AddRefitClientService<IGetJobStatusApi>(baseAddress);
+
+        services.AddRefitClientService<IStartJobApi>(baseAddress);
 
         ServiceProvider = services.BuildServiceProvider();
     }
