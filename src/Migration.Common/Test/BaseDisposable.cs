@@ -29,11 +29,11 @@ public abstract class BaseDisposable : IDisposable
     /// Dispose managed resources like objects that implement IDisposable,
     /// event subscriptions, collections, timers, cancellation tokens
     /// </summary>
-    public abstract void DisposeManagedResources();
+    public virtual void DisposeManagedResources() { }
 
     /// <summary>
     /// Clean up unmanaged resources like file handles, database connections, network sockets, Win32 handles,
     /// allocated memory, and other system resources not managed by the garbage collector
     /// </summary>
-    public abstract void CleanUpUnmanagedResources();
+    public virtual void CleanUpUnmanagedResources() { }
 }
