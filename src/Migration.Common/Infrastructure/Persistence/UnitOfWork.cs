@@ -6,18 +6,21 @@ public class UnitOfWork<TDbContext>(TDbContext DbContext, IServiceProvider Servi
 {
     private IDbContextTransaction? _transactionContext;
 
-    private readonly Dictionary<Type, IRepository> _repositories = [];
+    private readonly Dictionary<Type, object> _repositories = [];
 
-    public IRepository GetRepository<TRepository>()
-        where TRepository : IRepository
+    public TRepository GetRepository<TRepository,TEntity>()
+        where TRepository : IRepository<TEntity>
+        where TEntity : IEntity
     {
-        if (_repositories.TryGetValue(typeof(TRepository), out var repository))
-            return repository;
+        var key = typeof(TRepository);
+
+        if (_repositories.TryGetValue(key, out var repository))
+            return (TRepository)repository;
 
         var _repository = Services.GetService<TRepository>()
             ?? throw new InvalidCreationException(typeof(TRepository).Name);
 
-        _repositories.Add(typeof(TRepository), _repository);
+        _repositories.Add(key, _repository);
 
         return _repository;
     }

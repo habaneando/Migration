@@ -1,6 +1,6 @@
 ﻿namespace Migration.Domain;
 
-public  class JobItem
+public class JobItem : IEntity
 {
     public JobItemId Id { get; private set; }
 
@@ -8,7 +8,10 @@ public  class JobItem
 
     public JobItemStatus Status { get; private set; }
 
-    public JobItem(JobItemId id, object data, JobItemStatus status)
+    public JobItem(
+        JobItemId id,
+        object data,
+        JobItemStatus status)
     {
         Id = id;
         Data = data;

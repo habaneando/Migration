@@ -1,6 +1,6 @@
 ﻿namespace Migration.Domain;
 
-public class JobLog
+public class JobLog : IEntity
 {
     public JobItemId Id { get; private set; }
 

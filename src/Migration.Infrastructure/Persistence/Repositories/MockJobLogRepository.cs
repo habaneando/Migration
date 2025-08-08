@@ -3,10 +3,16 @@
 public class MockJobLogRepository(JobItemId.Factory JobItemIdFactory)
     : IJobLogRepository
 {
-    public Task UpdateAsync(JobLog jobLog) =>
+    public Task UpdateAsync(
+        JobLog jobLog,
+        CancellationToken cancellationToken = default) =>
         Task.CompletedTask;
 
-    public async Task<JobLogs> GetByJobIdAsync(JobId jobId, int? page, int? pageSize)
+    public async Task<JobLogs> GetByJobIdAsync(
+        JobId jobId,
+        int? page,
+        int? pageSize,
+        CancellationToken cancellationToken = default)
     {
         var logs = new List<JobLog>
         {

@@ -23,7 +23,6 @@ public class MockJobRepository(
 
         return Task.FromResult(new Job(id, jobType, items, null));
     }
-        
 
     public Task<JobStatusItem> GetStatusByIdAsync(JobId jobId, CancellationToken cancellationToken = default) =>
         Task.FromResult(new JobStatusItem(jobId.Id, 10, 5, 3));

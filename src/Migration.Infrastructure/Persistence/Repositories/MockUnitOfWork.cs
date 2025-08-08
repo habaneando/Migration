@@ -2,9 +2,9 @@
 
 public class MockUnitOfWork : BaseDisposable, IUnitOfWork
 {
-    public IRepository GetRepository<TRepository>()
-        where TRepository : IRepository =>
-        throw new NotImplementedException();
+    public TRepository GetRepository<TRepository, TEntity>()
+        where TRepository : IRepository<TEntity>
+        where TEntity : IEntity => throw new NotImplementedException();
 
     public Task BeginTransactionAsync(CancellationToken ct) =>
         Task.CompletedTask;

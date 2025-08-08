@@ -10,6 +10,7 @@ public interface IUnitOfWork : IDisposable
 
     Task CommitTransactionAsync(CancellationToken ct);
 
-    IRepository GetRepository<TRepository>()
-        where TRepository : IRepository;
+    TRepository GetRepository<TRepository, TEntity>()
+        where TRepository : IRepository<TEntity>
+        where TEntity : IEntity;
 }
