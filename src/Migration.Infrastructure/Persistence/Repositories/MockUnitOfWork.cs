@@ -4,7 +4,7 @@ public class MockUnitOfWork : BaseDisposable, IUnitOfWork
 {
     public TRepository GetRepository<TRepository, TEntity>()
         where TRepository : IRepository<TEntity>
-        where TEntity : class, IEntity =>
+        where TEntity : class, ITypedEntity =>
         throw new NotImplementedException();
 
     public Task BeginTransactionAsync(CancellationToken ct) =>

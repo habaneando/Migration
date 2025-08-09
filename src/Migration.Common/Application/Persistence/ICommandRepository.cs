@@ -1,8 +1,7 @@
 ﻿namespace Migration.Common;
 
-public interface ICommandRepository<TEntity>
-    : IRepository<TEntity>
-    where TEntity : class, IEntity
+public interface ICommandRepository<TEntity> : IRepository<TEntity>
+    where TEntity : class, ITypedEntity
 {
     Task AddAsync(TEntity entity);
 

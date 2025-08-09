@@ -5,3 +5,4 @@ global using Migration.Application;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
 global using Refit;
+global using CSharpFunctionalExtensions;

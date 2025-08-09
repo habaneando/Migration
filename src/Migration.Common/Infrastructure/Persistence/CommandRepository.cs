@@ -1,8 +1,7 @@
 ﻿namespace Migration.Common;
 
-public class CommandRepository<TEntity>
-    : BaseRepository<TEntity>, ICommandRepository<TEntity>
-    where TEntity : class, IEntity
+public class CommandRepository<TEntity> : BaseRepository<TEntity>, ICommandRepository<TEntity>
+    where TEntity : class, ITypedEntity
 {
     public CommandRepository(DbContext dbContext)
         : base(dbContext){}

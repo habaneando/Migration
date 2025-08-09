@@ -1,9 +1,7 @@
 ﻿namespace Migration.Domain;
 
-public class Job : IEntity
+public sealed class Job : BaseEntity<JobId>
 {
-    public JobId Id { get; private set; }
-
     public JobType Type { get; private set; }
 
     public List<JobItem>? Data { get; private set; } = [];
@@ -14,9 +12,8 @@ public class Job : IEntity
         JobId jobId,
         JobType jobType,
         List<JobItem>? data,
-        JobMetadata? metadata)
+        JobMetadata? metadata) : base(jobId)
     {
-        Id = jobId;
         Type = jobType;
         Data = data;
         Metadata = metadata;

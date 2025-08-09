@@ -12,5 +12,5 @@ public interface IUnitOfWork : IDisposable
 
     TRepository GetRepository<TRepository, TEntity>()
         where TRepository : IRepository<TEntity>
-        where TEntity : class, IEntity;
+        where TEntity : class, ITypedEntity;
 }

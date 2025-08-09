@@ -43,7 +43,7 @@ public static class QueryableExtensions
     public static IQueryable<TEntity> TryInclude<TEntity>(
         this IQueryable<TEntity> query,
         string includeProperties)
-        where TEntity : class, IEntity
+        where TEntity : class, ITypedEntity
     {
         if (string.IsNullOrEmpty(includeProperties))
             return query;
@@ -59,7 +59,7 @@ public static class QueryableExtensions
     public static IQueryable<TEntity> TryWhere<TEntity>(
         this IQueryable<TEntity> query,
         Expression<Func<TEntity, bool>> filter)
-        where TEntity : class, IEntity
+        where TEntity : class, ITypedEntity
     {
         if (filter is null)
             return query;

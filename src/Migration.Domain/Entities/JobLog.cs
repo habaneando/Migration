@@ -1,9 +1,7 @@
 ﻿namespace Migration.Domain;
 
-public class JobLog : IEntity
+public sealed class JobLog : BaseEntity<JobItemId>
 {
-    public JobItemId Id { get; private set; }
-
     public JobLogStatus Status { get; private set; }
 
     public string Description { get; private set; }
@@ -11,9 +9,8 @@ public class JobLog : IEntity
     public JobLog(
         JobItemId id,
         JobLogStatus status,
-        string description)
+        string description) : base(id)
     {
-        Id = id;
         Status = status;
         Description = description;
     }

@@ -1,9 +1,7 @@
 ﻿namespace Migration.Domain;
 
-public class StartJob : IEntity
+public sealed class StartJob : BaseEntity<Guid>
 {
-    public Guid JobId { get; private set; }
-
     public long TotalItems { get; private set; }
 
     public DateTime CreatedAt { get; private set; }
@@ -11,9 +9,8 @@ public class StartJob : IEntity
     public StartJob(
         Guid jobId,
         long totalItems,
-        DateTime createdAt)
+        DateTime createdAt) : base(jobId)
     {
-        JobId = jobId;
         TotalItems = totalItems;
         CreatedAt = createdAt;
     }

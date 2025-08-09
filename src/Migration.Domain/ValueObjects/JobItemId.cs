@@ -1,12 +1,24 @@
 ﻿namespace Migration.Domain;
 
-public sealed record JobItemId
+public sealed class JobItemId : ValueObject, IComparable<JobItemId>
 {
     public Guid Id { get; set; }
 
     private JobItemId(Guid guid)
     {
         Id = guid;
+    }
+
+    protected override IEnumerable<object> GetEqualityComponents()
+    {
+        yield return Id;
+    }
+
+    public int CompareTo(JobItemId? other)
+    {
+        if (other is null) return 1;
+
+        return Id.CompareTo(other.Id);
     }
 
     public class Factory()

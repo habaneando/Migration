@@ -10,7 +10,7 @@ public class UnitOfWork<TDbContext>(TDbContext DbContext, IServiceProvider Servi
 
     public TRepository GetRepository<TRepository,TEntity>()
         where TRepository : IRepository<TEntity>
-        where TEntity : class, IEntity
+        where TEntity : class, ITypedEntity
     {
         var key = typeof(TRepository);
 

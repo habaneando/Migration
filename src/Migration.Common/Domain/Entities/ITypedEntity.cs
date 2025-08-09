@@ -1,5 +1,5 @@
 ﻿namespace Migration.Common;
 
-public interface IEntity
+public interface ITypedEntity
 {
 }

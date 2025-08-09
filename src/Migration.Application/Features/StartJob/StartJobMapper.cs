@@ -3,7 +3,7 @@
 public class StartJobMapper
 {
     public StartJobResponse FromEntity(StartJob startJob) =>
-        new(startJob.JobId,
+        new(startJob.Id,
             startJob.TotalItems,
             startJob.CreatedAt);
 

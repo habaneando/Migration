@@ -1,9 +1,7 @@
 ﻿namespace Migration.Domain;
 
-public class JobItem : IEntity
+public sealed class JobItem : BaseEntity<JobItemId>
 {
-    public JobItemId Id { get; private set; }
-
     public object Data { get; private set; }
 
     public JobItemStatus Status { get; private set; }
@@ -11,9 +9,8 @@ public class JobItem : IEntity
     public JobItem(
         JobItemId id,
         object data,
-        JobItemStatus status)
+        JobItemStatus status) : base(id)
     {
-        Id = id;
         Data = data;
         Status = status;
     }

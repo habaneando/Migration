@@ -1,8 +1,7 @@
 ﻿namespace Migration.Common;
 
-public class QueryRepository<TEntity>
-    : BaseRepository<TEntity>, IQueryRepository<TEntity>
-    where TEntity : class, IEntity
+public class QueryRepository<TEntity> : BaseRepository<TEntity>, IQueryRepository<TEntity>
+    where TEntity : class, ITypedEntity
 {
     public QueryRepository(DbContext dbContext)
         : base(dbContext){}

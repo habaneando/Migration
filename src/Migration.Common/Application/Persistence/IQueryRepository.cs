@@ -1,8 +1,7 @@
 ﻿namespace Migration.Common;
 
-public interface IQueryRepository<TEntity>
-    : IRepository<TEntity>
-    where TEntity : class, IEntity
+public interface IQueryRepository<TEntity> : IRepository<TEntity>
+    where TEntity : class, ITypedEntity
 {
     Task<TEntity> GetFirstOrDefaultAsync(
         Expression<Func<TEntity, bool>>? filter = null,

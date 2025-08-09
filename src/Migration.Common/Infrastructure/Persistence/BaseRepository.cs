@@ -2,7 +2,7 @@
 
 public class BaseRepository<TEntity>
     : IRepository<TEntity>
-    where TEntity : class, IEntity
+    where TEntity : class, ITypedEntity
 {
     protected DbContext DbContext { get; init; }
 
