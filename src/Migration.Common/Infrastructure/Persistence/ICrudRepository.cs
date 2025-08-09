@@ -2,7 +2,7 @@
 
 public interface ICrudRepository<TEntity>
     : IRepository<TEntity>
-    where TEntity : IEntity
+    where TEntity : class, IEntity
 {
     Task<TEntity> GetFirstOrDefaultAsync(
         Expression<Func<TEntity, bool>>? filter = null,

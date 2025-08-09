@@ -1,6 +1,6 @@
 ﻿namespace Migration.Common;
 
 public interface IRepository<TEntity>
-    where TEntity : IEntity
+    where TEntity : class, IEntity
 {
 }
