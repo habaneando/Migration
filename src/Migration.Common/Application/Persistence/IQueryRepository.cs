@@ -1,6 +1,6 @@
 ﻿namespace Migration.Common;
 
-public interface ICrudRepository<TEntity>
+public interface IQueryRepository<TEntity>
     : IRepository<TEntity>
     where TEntity : class, IEntity
 {
@@ -25,12 +25,4 @@ public interface ICrudRepository<TEntity>
         string includeProperties = "");
 
     Task<TEntity> GetByIdAsync(object id);
-
-    Task AddAsync(TEntity entity);
-
-    Task DeleteAsync(object id);
-
-    Task DeleteAsync(TEntity entity);
-
-    Task UpdateAsync(TEntity entity);
 }
