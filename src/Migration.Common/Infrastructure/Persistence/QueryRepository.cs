@@ -1,19 +1,11 @@
 ﻿namespace Migration.Common;
 
 public class QueryRepository<TEntity>
-    : IQueryRepository<TEntity>
+    : BaseRepository<TEntity>, IQueryRepository<TEntity>
     where TEntity : class, IEntity
 {
-    private DbContext DbContext { get; init; }
-
-    private DbSet<TEntity> DbSet { get; init; }
-
     public QueryRepository(DbContext dbContext)
-    {
-        DbContext = dbContext;
-
-        DbSet = DbContext.Set<TEntity>();
-    }
+        : base(dbContext){}
 
     public async virtual Task<TEntity> GetFirstOrDefaultAsync(
         Expression<Func<TEntity, bool>>? filter = null,

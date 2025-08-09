@@ -1,19 +1,11 @@
 ﻿namespace Migration.Common;
 
 public class CommandRepository<TEntity>
-    : ICommandRepository<TEntity>
+    : BaseRepository<TEntity>, ICommandRepository<TEntity>
     where TEntity : class, IEntity
 {
-    private DbContext DbContext { get; init; }
-
-    private DbSet<TEntity> DbSet { get; init; }
-
     public CommandRepository(DbContext dbContext)
-    {
-        DbContext = dbContext;
-
-        DbSet = DbContext.Set<TEntity>();
-    }
+        : base(dbContext){}
 
     public async virtual Task AddAsync(TEntity entity) =>
         await DbSet.AddAsync(entity)
