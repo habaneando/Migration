@@ -1,14 +1,13 @@
 ﻿namespace Migration.Common;
 
-public class BaseRepository<TEntity>
-    : IRepository<TEntity>
+public class BaseEfRepository<TEntity> : IRepository<TEntity>
     where TEntity : class, ITypedEntity
 {
     protected DbContext DbContext { get; init; }
 
     protected DbSet<TEntity> DbSet { get; init; }
 
-    public BaseRepository(DbContext dbContext)
+    public BaseEfRepository(DbContext dbContext)
     {
         DbContext = dbContext;
 

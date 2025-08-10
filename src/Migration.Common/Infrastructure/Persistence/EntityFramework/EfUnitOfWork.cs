@@ -1,6 +1,6 @@
 ﻿namespace Migration.Common;
 
-public class UnitOfWork<TDbContext>(TDbContext DbContext, IServiceProvider Services)
+public class EfUnitOfWork<TDbContext>(TDbContext DbContext, IServiceProvider Services)
     : BaseDisposable, IUnitOfWork
     where TDbContext : DbContext
 {

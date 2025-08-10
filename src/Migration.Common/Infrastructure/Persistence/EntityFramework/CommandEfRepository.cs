@@ -1,9 +1,9 @@
 ﻿namespace Migration.Common;
 
-public class CommandRepository<TEntity> : BaseRepository<TEntity>, ICommandRepository<TEntity>
+public class CommandEfRepository<TEntity> : BaseEfRepository<TEntity>, ICommandRepository<TEntity>
     where TEntity : class, ITypedEntity
 {
-    public CommandRepository(DbContext dbContext)
+    public CommandEfRepository(DbContext dbContext)
         : base(dbContext){}
 
     public async virtual Task AddAsync(TEntity entity) =>

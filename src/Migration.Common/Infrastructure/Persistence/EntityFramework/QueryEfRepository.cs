@@ -1,9 +1,9 @@
 ﻿namespace Migration.Common;
 
-public class QueryRepository<TEntity> : BaseRepository<TEntity>, IQueryRepository<TEntity>
+public class QueryEfRepository<TEntity> : BaseEfRepository<TEntity>, IQueryRepository<TEntity>
     where TEntity : class, ITypedEntity
 {
-    public QueryRepository(DbContext dbContext)
+    public QueryEfRepository(DbContext dbContext)
         : base(dbContext){}
 
     public async virtual Task<TEntity> GetFirstOrDefaultAsync(
