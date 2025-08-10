@@ -2,7 +2,7 @@
 
 public sealed class JobItemId : ValueObject, IComparable<JobItemId>
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; init; }
 
     private JobItemId(Guid guid)
     {

@@ -43,13 +43,13 @@ public class JobData
             {
                 JobType.Bulk,
                 new JobMetadata
-                {
-                    Description = "Test job",
-                    Source = "Source system",
-                    Target = "Target system",
-                    Priority = 1,
-                    Tags = new List<string> { "tag1", "tag2" }
-                }
+                (
+                    "Test job",
+                    "Source system",
+                    "Target system",
+                    1,
+                    ["tag1", "tag2"]
+                )
             },
        };
 }
