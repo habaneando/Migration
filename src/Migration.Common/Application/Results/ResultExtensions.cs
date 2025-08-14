@@ -8,10 +8,11 @@ public static class ResultExtensions
         int errorStatusCode = StatusCodes.Status400BadRequest,
         string? message = null,
         string? requestId = null) =>
-        BaseResponse<T>.FromResult(
+        BaseResponse<T>.Create(
             result,
-            successStatusCode,
-            errorStatusCode,
+            result.Success
+                ? successStatusCode
+                : errorStatusCode,
             message,
             requestId);
 }
