@@ -4,7 +4,8 @@ public static class FluentValidationExtensions
 {
     public static IReadOnlyList<ErrorItem> ToErrorItems(this IEnumerable<ValidationFailure> failures) =>
         failures.Select(f =>
-            ErrorItem.Validation(
+            ErrorItem.Create(
+                "ValidationError",
                 f.PropertyName,
                 f.ErrorMessage,
                 f.AttemptedValue))

@@ -62,7 +62,7 @@ public static class BaseResponseExtensions
         string? message = null,
         string? requestId = null) =>
         BaseResponse<T>.Create(
-            Result<T>.Fail(new ErrorItem("NotFound", message ?? "Resource not found")),
+            Result<T>.Fail(ErrorItem.Create("NotFound", message ?? "Resource not found")),
             StatusCodes.Status404NotFound,
             message,
             requestId);
@@ -72,7 +72,7 @@ public static class BaseResponseExtensions
         string? message = null,
         string? requestId = null) =>
         BaseResponse<T>.Create(
-            Result<T>.Fail(new ErrorItem("Unauthorized", message ?? "Unauthorized access")),
+            Result<T>.Fail(ErrorItem.Create("Unauthorized", message ?? "Unauthorized access")),
             StatusCodes.Status401Unauthorized,
             message,
             requestId);
@@ -82,7 +82,7 @@ public static class BaseResponseExtensions
         string? message = null,
         string? requestId = null) =>
         BaseResponse<T>.Create(
-            Result<T>.Fail(new ErrorItem("Forbidden", message ?? "Access forbidden")),
+            Result<T>.Fail(ErrorItem.Create("Forbidden", message ?? "Access forbidden")),
             StatusCodes.Status403Forbidden,
             message,
             requestId);
@@ -103,7 +103,7 @@ public static class BaseResponseExtensions
         string? message = null,
         string? requestId = null) =>
         BaseResponse<T>.Create(
-            Result<T>.Fail(new ErrorItem("InternalServerError", message ?? "An internal server error occurred")),
+            Result<T>.Fail(ErrorItem.Create("InternalServerError", message ?? "An internal server error occurred")),
             StatusCodes.Status500InternalServerError,
             message,
             requestId);
@@ -180,7 +180,7 @@ public static class BaseResponseExtensions
         string? message = null,
         string? requestId = null) =>
         BaseResponse.Create(
-            Result<object>.Fail(new ErrorItem("NotFound", message ?? "Resource not found")),
+            Result<object>.Fail(ErrorItem.Create("NotFound", message ?? "Resource not found")),
             StatusCodes.Status404NotFound,
             message,
             requestId);

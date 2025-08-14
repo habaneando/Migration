@@ -14,7 +14,7 @@ public sealed record ErrorItem
 
     public Dictionary<string, object>? Metadata { get; init; }
 
-    public ErrorItem(
+    private ErrorItem(
         string code,
         string message,
         string? propertyName = null,
@@ -30,97 +30,19 @@ public sealed record ErrorItem
         Metadata = metadata;
     }
 
-    public static ErrorItem Validation(
-        string propertyName,
+    public static ErrorItem Create(
+        string code,
         string message,
-        object? attemptedValue = null) =>
-        new("ValidationError",
+        string? propertyName = null,
+        object? attemptedValue = null,
+        string? severity = null,
+        Dictionary<string, object>? metadata = null) =>
+        new(code,
             message,
             propertyName,
             attemptedValue,
-            ErrorSeverity.Error);
-
-    public static ErrorItem NotFound(
-        string? message = null,
-        string? resourceType = null) =>
-        new("NotFound",
-            message ?? "Resource not found",
-            metadata: resourceType != null
-                ? new Dictionary<string, object>
-                {
-                    ["ResourceType"] = resourceType
-                }
-                : null);
-
-    public static ErrorItem Unauthorized(
-        string? message = null) =>
-        new("Unauthorized",
-            message ?? "Unauthorized access");
-
-    public static ErrorItem Forbidden(
-        string? message = null) =>
-        new("Forbidden",
-            message ?? "Access forbidden");
-
-    public static ErrorItem Conflict(
-        string message,
-        string? propertyName = null) =>
-        new("Conflict",
-            message,
-            propertyName);
-
-    public static ErrorItem BusinessRule(
-        string ruleName,
-        string message) =>
-        new("BusinessRuleViolation",
-            message,
-            metadata: new Dictionary<string, object>
-            {
-                ["RuleName"] = ruleName
-            });
-
-    public static ErrorItem External(
-        string service,
-        string message,
-        string? originalErrorCode = null) =>
-        new("ExternalServiceError",
-            message,
-            metadata: new Dictionary<string, object>
-            {
-                ["Service"] = service,
-                ["OriginalErrorCode"] = originalErrorCode ?? "Unknown"
-            });
-
-    public static ErrorItem Internal(
-        string message,
-        Exception? exception = null) =>
-        new("InternalError",
-            message,
-            severity: ErrorSeverity.Critical,
-            metadata: exception != null
-                ? new Dictionary<string, object>
-                {
-                    ["ExceptionType"] = exception.GetType().Name
-                }
-                : null);
-
-    public static ErrorItem Warning(
-        string code,
-        string message,
-        string? propertyName = null) =>
-        new(code,
-            message,
-            propertyName,
-            severity: ErrorSeverity.Warning);
-
-    public static ErrorItem Info(
-        string code,
-        string message,
-        string? propertyName = null) =>
-        new(code,
-            message,
-            propertyName,
-            severity: ErrorSeverity.Info);
+            severity,
+            metadata);
 
     public bool IsValidationError =>
         Code == "ValidationError";
