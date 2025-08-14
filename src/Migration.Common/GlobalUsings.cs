@@ -5,3 +5,5 @@ global using Microsoft.Extensions.DependencyInjection;
 global using System.Collections;
 global using System.Linq.Expressions;
 global using CSharpFunctionalExtensions;
+global using Microsoft.AspNetCore.Http;
+global using FluentValidation.Results;
