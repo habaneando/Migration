@@ -1,6 +1,6 @@
 ﻿namespace Migration.Application;
 
-public class JobProcessingService : IJobProcessingService
+public class StartJobService : IStartJobService
 {
     private readonly IJobRepository _jobRepository;
 
@@ -10,16 +10,16 @@ public class JobProcessingService : IJobProcessingService
 
     private readonly IUnitOfWork _unitOfWork;
 
-    private readonly ILogger<JobProcessingService> _logger;
+    private readonly ILogger<StartJobService> _logger;
 
     private readonly JobId.Factory _jobIdFactory;
 
-    public JobProcessingService(
+    public StartJobService(
         IJobRepository jobRepository,
         IJobLogRepository jobLogRepository,
         IDataProcessingService dataProcessingService,
         IUnitOfWork unitOfWork,
-        ILogger<JobProcessingService> logger,
+        ILogger<StartJobService> logger,
         JobId.Factory jobIdFactory)
     {
         _jobRepository = jobRepository;

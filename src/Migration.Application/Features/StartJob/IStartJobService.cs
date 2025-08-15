@@ -1,6 +1,6 @@
 ﻿namespace Migration.Application;
 
-public interface IJobProcessingService
+public interface IStartJobService
 {
     Task ProcessJobAsync(Guid guid, CancellationToken cancellationToken = default);
 }
