@@ -31,28 +31,28 @@ public sealed record ErrorItem
     }
 
     public bool IsValidationError =>
-        Code == "ValidationError";
+        Code == ErrorCode.ValidationError;
 
     public bool IsNotFound =>
-        Code == "NotFound";
+        Code == ErrorCode.NotFound;
 
     public bool IsUnauthorized =>
-        Code == "Unauthorized";
+        Code == ErrorCode.Unauthorized;
 
     public bool IsForbidden =>
-        Code == "Forbidden";
+        Code == ErrorCode.Forbidden;
 
     public bool IsConflict =>
-        Code == "Conflict";
+        Code == ErrorCode.Conflict;
 
     public bool IsBusinessRule =>
-        Code == "BusinessRuleViolation";
+        Code == ErrorCode.BusinessRuleViolation;
 
     public bool IsExternal =>
-        Code == "ExternalServiceError";
+        Code == ErrorCode.ExternalServiceError;
 
     public bool IsInternal =>
-        Code == "InternalError";
+        Code == ErrorCode.InternalError;
 
     public bool IsError =>
         Severity == ErrorSeverity.Error ||
@@ -73,7 +73,7 @@ public sealed record ErrorItem
         string propertyName,
         string message,
         object? attemptedValue = null) =>
-        new("ValidationError",
+        new(ErrorCode.ValidationError,
             message,
             propertyName,
             attemptedValue,
@@ -82,7 +82,7 @@ public sealed record ErrorItem
     public static ErrorItem NotFound(
         string? message = null,
         string? resourceType = null) =>
-        new("NotFound",
+        new(ErrorCode.NotFound,
             message ?? "Resource not found",
             metadata: resourceType != null
                 ? new Dictionary<string, object>
@@ -93,25 +93,25 @@ public sealed record ErrorItem
 
     public static ErrorItem Unauthorized(
         string? message = null) =>
-        new("Unauthorized",
+        new(ErrorCode.Unauthorized,
             message ?? "Unauthorized access");
 
     public static ErrorItem Forbidden(
         string? message = null) =>
-        new("Forbidden",
+        new(ErrorCode.Forbidden,
             message ?? "Access forbidden");
 
     public static ErrorItem Conflict(
         string message,
         string? propertyName = null) =>
-        new("Conflict",
+        new(ErrorCode.Conflict,
             message,
             propertyName);
 
     public static ErrorItem BusinessRule(
         string ruleName,
         string message) =>
-        new("BusinessRuleViolation",
+        new(ErrorCode.BusinessRuleViolation,
             message,
             metadata: new Dictionary<string, object>
             {
@@ -122,7 +122,7 @@ public sealed record ErrorItem
         string service,
         string message,
         string? originalErrorCode = null) =>
-        new("ExternalServiceError",
+        new(ErrorCode.ExternalServiceError,
             message,
             metadata: new Dictionary<string, object>
             {
@@ -133,7 +133,7 @@ public sealed record ErrorItem
     public static ErrorItem Internal(
         string message,
         Exception? exception = null) =>
-        new("InternalError",
+        new(ErrorCode.InternalError,
             message,
             severity: ErrorSeverity.Critical,
             metadata: exception != null
