@@ -1,40 +1,42 @@
 ﻿namespace Migration.Common;
 
-public sealed record Result<T>
+public sealed record Result<TData>
 {
-    public T? Value { get; init; }
+    public TData? Data { get; init; }
 
     public IReadOnlyList<ErrorItem> Errors { get; init; }
 
+    [JsonIgnore]
     public bool Success =>
-        Value is not null &&
+        Data is not null &&
         Errors.Count == 0;
 
-    private Result(T? value, IReadOnlyList<ErrorItem> errors)
+    private Result(TData? data, IReadOnlyList<ErrorItem> errors)
     {
-        Value = value;
+        Data = data;
         Errors = errors ?? Enumerable.Empty<ErrorItem>().ToList();
     }
 
-    public static Result<T> Ok(T value) =>
-        new(value, Enumerable.Empty<ErrorItem>().ToList());
+    public static Result<TData> Ok(TData data) =>
+        new(data,
+            Enumerable.Empty<ErrorItem>().ToList());
 
-    public static Result<T> Fail(ErrorItem error) =>
+    public static Result<TData> Fail(ErrorItem error) =>
         new(default,
             error is not null
                 ? [error]
                 : Enumerable.Empty<ErrorItem>().ToList());
 
-    public static Result<T> Fail(IReadOnlyList<ErrorItem> errors) =>
+    public static Result<TData> Fail(IReadOnlyList<ErrorItem> errors) =>
         new(default,
             errors?.ToList() ?? Enumerable.Empty<ErrorItem>().ToList());
 
-    public BaseResponse<T> ToBaseResponse(
+    public BaseResponse<TData> ToBaseResponse(
        int successStatusCode = StatusCodes.Status200OK,
        int errorStatusCode = StatusCodes.Status400BadRequest,
        string? message = null,
        string? requestId = null) =>
-       BaseResponse<T>.FromResult(
+       BaseResponse<TData>.FromResult(
            this,
            successStatusCode,
            errorStatusCode,

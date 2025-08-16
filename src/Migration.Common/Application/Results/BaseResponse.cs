@@ -27,12 +27,15 @@ public record BaseResponse<T>
     /// </summary>
     public string? Message { get; init; }
 
+    [JsonIgnore]
     public T? Value =>
-        Result.Value;
+        Result.Data;
 
+    [JsonIgnore]
     public IReadOnlyList<ErrorItem> Errors =>
         Result.Errors;
 
+    [JsonIgnore]
     public bool Success =>
         Result.Success;
 

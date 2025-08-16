@@ -4,7 +4,7 @@ public class GetJobLogsEndpoint(
     CacheSettings CacheSettings,
     ThrottleSettings ThrottlingSettings,
     GetJobLogsMapper Mapper)
-    : Endpoint<GetJobLogsRequest, GetJobLogsResponse>
+    : BaseEndpoint<GetJobLogsRequest, GetJobLogsResponse>
 {
     public override void Configure()
     {
@@ -31,9 +31,9 @@ public class GetJobLogsEndpoint(
         var getJobLogsResult = await getJobLogsQuery.ExecuteAsync()
             .ConfigureAwait(false);
 
-        var getJobLogsResponse = Mapper.FromEntity(getJobLogsResult);
+        var getJobLogsResponse = ToResponse(getJobLogsResult);
 
-        await Send.OkAsync(getJobLogsResponse, ct)
+        await SendResponseAsync(getJobLogsResponse, ct)
             .ConfigureAwait(false);
     }
 }

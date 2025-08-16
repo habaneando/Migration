@@ -1,9 +1,9 @@
 ﻿namespace Migration.Application;
 
 public class GetJobLogsQueryHandler(IGetJobLogsService GetJobLogsService)
-    : IQueryHandler<GetJobLogsQuery, Result<JobLogs>>
+    : IQueryHandler<GetJobLogsQuery, Result<GetJobLogsResponse>>
 {
-    public Task<Result<JobLogs>> ExecuteAsync(GetJobLogsQuery getJobLogsQuery, CancellationToken ct) =>
+    public Task<Result<GetJobLogsResponse>> ExecuteAsync(GetJobLogsQuery getJobLogsQuery, CancellationToken ct) =>
         GetJobLogsService.GetLogsByJobIdAsync(
             getJobLogsQuery.JobId,
             getJobLogsQuery.Page,

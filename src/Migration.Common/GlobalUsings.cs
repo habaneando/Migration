@@ -7,3 +7,4 @@ global using System.Linq.Expressions;
 global using CSharpFunctionalExtensions;
 global using Microsoft.AspNetCore.Http;
 global using FluentValidation.Results;
+global using System.Text.Json.Serialization;

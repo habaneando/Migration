@@ -4,34 +4,36 @@ public abstract class BaseEndpoint<TRequest, TResponse>
     : Endpoint<TRequest, BaseResponse<TResponse>>
     where TRequest : notnull
 {
-    public BaseResponse<T> ToResponse<T>(
-        Result<T> result,
+    public BaseResponse<TData> ToResponse<TData>(
+        Result<TData> result,
         string? requestId = null)
     {
         if (result.Success)
         {
-            return BaseResponse<T>.Ok(result.Value!, requestId: requestId);
+            var successResponse = BaseResponse<TData>.Ok(result.Data!, requestId: requestId);
+
+            return successResponse;
         }
 
         var firstError = result.Errors.FirstOrDefault();
 
         var response = firstError?.Code switch
         {
-            ErrorCode.ValidationError => BaseResponse<T>.BadRequest(result.Errors, requestId: requestId),
-            ErrorCode.BusinessRuleViolation => BaseResponse<T>.BadRequest(result.Errors, requestId: requestId),
-            ErrorCode.ExternalServiceError => BaseResponse<T>.BadRequest(firstError, requestId: requestId),
-            ErrorCode.NotFound => BaseResponse<T>.NotFound(firstError.Message, requestId),
-            ErrorCode.Unauthorized => BaseResponse<T>.Unauthorized(firstError.Message, requestId),
-            ErrorCode.Forbidden => BaseResponse<T>.Forbidden(firstError.Message, requestId),
-            ErrorCode.Conflict => BaseResponse<T>.Conflict(firstError, requestId: requestId),
-            _ => BaseResponse<T>.InternalServerError(firstError?.Message, requestId)
+            ErrorCode.ValidationError => BaseResponse<TData>.BadRequest(result.Errors, requestId: requestId),
+            ErrorCode.BusinessRuleViolation => BaseResponse<TData>.BadRequest(result.Errors, requestId: requestId),
+            ErrorCode.ExternalServiceError => BaseResponse<TData>.BadRequest(firstError, requestId: requestId),
+            ErrorCode.NotFound => BaseResponse<TData>.NotFound(firstError.Message, requestId),
+            ErrorCode.Unauthorized => BaseResponse<TData>.Unauthorized(firstError.Message, requestId),
+            ErrorCode.Forbidden => BaseResponse<TData>.Forbidden(firstError.Message, requestId),
+            ErrorCode.Conflict => BaseResponse<TData>.Conflict(firstError, requestId: requestId),
+            _ => BaseResponse<TData>.InternalServerError(firstError?.Message, requestId)
         };
 
         return response;
     }
 
-    public BaseResponse<T> ToResponse<T>(
-        Result<T> result,
+    public BaseResponse<TData> ToResponse<TData>(
+        Result<TData> result,
         int successStatusCode,
         string? requestId = null)
     {
@@ -39,9 +41,9 @@ public abstract class BaseEndpoint<TRequest, TResponse>
         {
             return successStatusCode switch
             {
-                StatusCodes.Status201Created => BaseResponse<T>.Created(result.Value!, requestId: requestId),
-                StatusCodes.Status202Accepted => BaseResponse<T>.Accepted(result.Value!, requestId: requestId),
-                _ => BaseResponse<T>.Ok(result.Value!, requestId: requestId)
+                StatusCodes.Status201Created => BaseResponse<TData>.Created(result.Data!, requestId: requestId),
+                StatusCodes.Status202Accepted => BaseResponse<TData>.Accepted(result.Data!, requestId: requestId),
+                _ => BaseResponse<TData>.Ok(result.Data!, requestId: requestId)
             };
         }
 
@@ -69,8 +71,8 @@ public abstract class BaseEndpoint<TRequest, TResponse>
         return response;
     }
 
-    public async Task SendResponseAsync<T>(
-        BaseResponse<T> baseResponse,
+    public async Task SendResponseAsync<TData>(
+        BaseResponse<TData> baseResponse,
         CancellationToken ct = default)
     {
         HttpContext.Response.StatusCode = baseResponse.StatusCode;
