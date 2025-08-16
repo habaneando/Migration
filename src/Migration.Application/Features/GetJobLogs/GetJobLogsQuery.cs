@@ -3,6 +3,6 @@
 public sealed record GetJobLogsQuery(
     Guid JobId,
     int? Page,
-    int? PageSize) : IQuery<JobLogs>
+    int? PageSize) : IQuery<Result<JobLogs>>
 {
 }

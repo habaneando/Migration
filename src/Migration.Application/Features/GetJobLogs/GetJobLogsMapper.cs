@@ -2,9 +2,9 @@
 
 public class GetJobLogsMapper
 {
-    public GetJobLogsResponse FromEntity(JobLogs jobLogs) =>
-        new(jobLogs.Id,
-            jobLogs.Logs.Select(x =>
+    public GetJobLogsResponse FromEntity( Result<JobLogs> jobLogs) =>
+        new(jobLogs.Value.Id,
+            jobLogs.Value.Logs.Select(x =>
                 new JobLogResponse(
                     x.Id.Id,
                     x.Status,

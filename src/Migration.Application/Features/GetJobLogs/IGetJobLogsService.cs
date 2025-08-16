@@ -2,7 +2,7 @@
 
 public interface IGetJobLogsService
 {
-    Task<JobLogs> GetLogsByJobIdAsync(
+    Task<Result<JobLogs>> GetLogsByJobIdAsync(
         Guid guid,
         int? page,
         int? pageSize,

@@ -28,10 +28,10 @@ public class GetJobLogsEndpoint(
     {
         var getJobLogsQuery = Mapper.ToQuery(getJobLogsRequest);
 
-        var getJobLogsEntity = await getJobLogsQuery.ExecuteAsync()
+        var getJobLogsResult = await getJobLogsQuery.ExecuteAsync()
             .ConfigureAwait(false);
 
-        var getJobLogsResponse = Mapper.FromEntity(getJobLogsEntity);
+        var getJobLogsResponse = Mapper.FromEntity(getJobLogsResult);
 
         await Send.OkAsync(getJobLogsResponse, ct)
             .ConfigureAwait(false);
