@@ -1,8 +1,8 @@
 ﻿namespace Migration.Application;
 
-public class GetJobLogsMapper
+public class GetJobLogsEntityMapper
 {
-    public GetJobLogsResponse FromEntity(JobLogs jobLogs) =>
+    public GetJobLogsResponse ToResponse(JobLogs jobLogs) =>
         new(jobLogs.Id,
             jobLogs.Logs.Select(x =>
                 new JobLogResponse(

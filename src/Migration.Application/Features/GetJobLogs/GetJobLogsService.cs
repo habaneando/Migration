@@ -3,7 +3,7 @@
 public class GetJobLogsService(
     IJobLogRepository JobLogRepository,
     JobId.Factory JobIdFactory,
-    GetJobLogsMapper Mapper)
+    GetJobLogsEntityMapper EntityMapper)
     : IGetJobLogsService
 {
     public async Task<Result<GetJobLogsResponse>> GetLogsByJobIdAsync(
@@ -22,7 +22,7 @@ public class GetJobLogsService(
                 .ConfigureAwait(false);
 
             return joblogs != null
-                ? Result<GetJobLogsResponse>.Ok(Mapper.FromEntity(joblogs))
+                ? Result<GetJobLogsResponse>.Ok(EntityMapper.ToResponse(joblogs))
                 : Result<GetJobLogsResponse>.Fail(ErrorItem.NotFound("Job not found"));
         }
         catch (Exception ex)

@@ -8,15 +8,15 @@ public static class DI
 
         services.AddSingleton<ThrottleSettings>();
 
-        services.AddSingleton<GetJobLogsMapper>();
+        services.AddSingleton<GetJobLogsEntityMapper>();
 
         services.AddSingleton<IQueryMapper<GetJobLogsRequest, GetJobLogsQuery>, GetJobLogsQueryMapper>();
 
-        services.AddSingleton<StartJobMapper>();
+        services.AddSingleton<StartJobEntityMapper>();
 
         services.AddSingleton<ICommandMapper<StartJobRequest, StartJobCommand>, StartJobCommandMapper>();
 
-        services.AddSingleton<GetJobStatusMapper>();
+        services.AddSingleton<GetJobStatusEntityMapper>();
 
         services.AddSingleton<IQueryMapper<GetJobStatusRequest, GetJobStatusQuery>, GetJobStatusQueryMapper>();
 

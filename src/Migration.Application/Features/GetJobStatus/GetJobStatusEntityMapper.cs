@@ -1,8 +1,8 @@
 ﻿namespace Migration.Application;
 
-public class GetJobStatusMapper
+public class GetJobStatusEntityMapper
 {
-    public GetJobStatusResponse FromEntity(JobStatusItem jobStatusItem) =>
+    public GetJobStatusResponse ToResponse(JobStatusItem jobStatusItem) =>
         new(jobStatusItem.Id,
             jobStatusItem.TotalItems,
             jobStatusItem.ProcessedItems,

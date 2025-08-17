@@ -14,13 +14,16 @@ public class StartJobService : IStartJobService
 
     private readonly JobId.Factory _jobIdFactory;
 
+    private readonly StartJobEntityMapper _entityMapper;
+
     public StartJobService(
         IJobRepository jobRepository,
         IJobLogRepository jobLogRepository,
         IDataProcessingService dataProcessingService,
         IUnitOfWork unitOfWork,
         ILogger<StartJobService> logger,
-        JobId.Factory jobIdFactory)
+        JobId.Factory jobIdFactory,
+        StartJobEntityMapper entityMapper)
     {
         _jobRepository = jobRepository;
         _jobLogRepository = jobLogRepository;
@@ -28,6 +31,7 @@ public class StartJobService : IStartJobService
         _unitOfWork = unitOfWork;
         _logger = logger;
         _jobIdFactory = jobIdFactory;
+        _entityMapper = entityMapper;
     }
 
     public async Task<Result<StartJobResponse>> ProcessJobAsync(Guid guid, CancellationToken cancellationToken = default)
@@ -50,9 +54,12 @@ public class StartJobService : IStartJobService
         await ProcessJobItems(jobId, job, cancellationToken)
             .ConfigureAwait(false);
 
+        //ProcessJobItems method should return an StartJob 
+        var startJob = new StartJob(guid, 6, DateTime.UtcNow);
+
         _logger.LogInformation("Completed processing for job {JobId}",jobId);
 
-        return Result<StartJobResponse>.Ok(new StartJobResponse(guid, 5, DateTime.UtcNow));
+        return Result<StartJobResponse>.Ok(_entityMapper.ToResponse(startJob));
     }
 
     private async Task ProcessJobItems(
