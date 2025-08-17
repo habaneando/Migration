@@ -2,5 +2,5 @@
 
 public interface IGetJobStatusService
 {
-    Task<JobStatusItem> GetStatusByIdAsync(Guid guid, CancellationToken cancellationToken = default);
+    Task<Result<GetJobStatusResponse>> GetStatusByIdAsync(Guid guid, CancellationToken cancellationToken = default);
 }

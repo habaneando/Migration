@@ -7,7 +7,4 @@ public class GetJobStatusMapper
             jobStatusItem.TotalItems,
             jobStatusItem.ProcessedItems,
             jobStatusItem.FailedItems);
-
-    public GetJobStatusQuery ToQuery(GetJobStatusRequest getJobStatusRequest) =>
-        new(getJobStatusRequest.JobId);
 }

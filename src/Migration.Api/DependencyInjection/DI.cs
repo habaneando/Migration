@@ -18,6 +18,8 @@ public static class DI
 
         services.AddSingleton<GetJobStatusMapper>();
 
+        services.AddSingleton<IQueryMapper<GetJobStatusRequest, GetJobStatusQuery>, GetJobStatusQueryMapper>();
+
         services.AddSingleton<ILogFormatter, LogFormatter>();
 
         services.AddSingleton<IExceptionFormatter, ExceptionFormatter>();
