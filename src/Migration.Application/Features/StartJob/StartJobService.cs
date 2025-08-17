@@ -1,40 +1,18 @@
 ﻿namespace Migration.Application;
 
-public class StartJobService : IStartJobService
+public class StartJobService(
+    IJobRepository _jobRepository,
+    IJobLogRepository _jobLogRepository,
+    IDataProcessingService _dataProcessingService,
+    IUnitOfWork _unitOfWork,
+    JobId.Factory _jobIdFactory,
+    StartJobEntityMapper _entityMapper,
+    ILogger<StartJobService> _logger)
+    : IStartJobService
 {
-    private readonly IJobRepository _jobRepository;
-
-    private readonly IJobLogRepository _jobLogRepository;   
-
-    private readonly IDataProcessingService _dataProcessingService;
-
-    private readonly IUnitOfWork _unitOfWork;
-
-    private readonly ILogger<StartJobService> _logger;
-
-    private readonly JobId.Factory _jobIdFactory;
-
-    private readonly StartJobEntityMapper _entityMapper;
-
-    public StartJobService(
-        IJobRepository jobRepository,
-        IJobLogRepository jobLogRepository,
-        IDataProcessingService dataProcessingService,
-        IUnitOfWork unitOfWork,
-        ILogger<StartJobService> logger,
-        JobId.Factory jobIdFactory,
-        StartJobEntityMapper entityMapper)
-    {
-        _jobRepository = jobRepository;
-        _jobLogRepository = jobLogRepository;
-        _dataProcessingService = dataProcessingService;
-        _unitOfWork = unitOfWork;
-        _logger = logger;
-        _jobIdFactory = jobIdFactory;
-        _entityMapper = entityMapper;
-    }
-
-    public async Task<Result<StartJobResponse>> ProcessJobAsync(Guid guid, CancellationToken cancellationToken = default)
+    public async Task<Result<StartJobResponse>> ProcessJobAsync(
+        Guid guid,
+        CancellationToken cancellationToken = default)
     {
         var jobId = _jobIdFactory.Create(guid);
 

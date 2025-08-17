@@ -1,9 +1,10 @@
 ﻿namespace Migration.Application;
 
 public class GetJobStatusService(
-    IJobRepository JobRepository,
-    JobId.Factory JobIdFactory,
-    GetJobStatusEntityMapper EntityMapper)
+    IJobRepository _jobRepository,
+    JobId.Factory _jobIdFactory,
+    GetJobStatusEntityMapper _entityMapper,
+    ILogger<GetJobStatusService> _logger)
     : IGetJobStatusService
 {
     public async Task<Result<GetJobStatusResponse>> GetStatusByIdAsync(
@@ -12,12 +13,12 @@ public class GetJobStatusService(
     {
         try
         {
-            var jobStatus = await JobRepository
-                .GetStatusByIdAsync(JobIdFactory.Create(guid))
+            var jobStatus = await _jobRepository
+                .GetStatusByIdAsync(_jobIdFactory.Create(guid))
                 .ConfigureAwait(false);
 
             return jobStatus != null
-                ? Result<GetJobStatusResponse>.Ok(EntityMapper.ToResponse(jobStatus))
+                ? Result<GetJobStatusResponse>.Ok(_entityMapper.ToResponse(jobStatus))
                 : Result<GetJobStatusResponse>.Fail(ErrorItem.NotFound("Job not found"));
         }
         catch (Exception ex)
