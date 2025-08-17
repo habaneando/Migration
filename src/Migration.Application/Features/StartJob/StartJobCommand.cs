@@ -4,7 +4,6 @@ public sealed record StartJobCommand(
     Guid JobId,
     string JobType,
     List<JobItemRequest> Data,
-    JobMetadataRequest? Metadata)
-    : ICommand
+    JobMetadataRequest? Metadata) : ICommand<Result<StartJobResponse>>
 {
 }

@@ -30,7 +30,7 @@ public class StartJobService : IStartJobService
         _jobIdFactory = jobIdFactory;
     }
 
-    public async Task ProcessJobAsync(Guid guid, CancellationToken cancellationToken = default)
+    public async Task<Result<StartJobResponse>> ProcessJobAsync(Guid guid, CancellationToken cancellationToken = default)
     {
         var jobId = _jobIdFactory.Create(guid);
 
@@ -43,13 +43,16 @@ public class StartJobService : IStartJobService
         if (job is null)
         {
             _logger.LogError("Job {JobId} not found", jobId);
-            return;
+
+            return Result<StartJobResponse>.Fail(ErrorItem.NotFound("Job id not found"));
         }
 
         await ProcessJobItems(jobId, job, cancellationToken)
             .ConfigureAwait(false);
 
         _logger.LogInformation("Completed processing for job {JobId}",jobId);
+
+        return Result<StartJobResponse>.Ok(new StartJobResponse(guid, 5, DateTime.UtcNow));
     }
 
     private async Task ProcessJobItems(

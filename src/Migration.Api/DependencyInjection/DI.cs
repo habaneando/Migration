@@ -12,9 +12,11 @@ public static class DI
 
         services.AddSingleton<IQueryMapper<GetJobLogsRequest, GetJobLogsQuery>, GetJobLogsQueryMapper>();
 
-        services.AddSingleton<GetJobStatusMapper>();
-
         services.AddSingleton<StartJobMapper>();
+
+        services.AddSingleton<ICommandMapper<StartJobRequest, StartJobCommand>, StartJobCommandMapper>();
+
+        services.AddSingleton<GetJobStatusMapper>();
 
         services.AddSingleton<ILogFormatter, LogFormatter>();
 

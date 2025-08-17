@@ -2,11 +2,8 @@
 
 public class GetJobLogsQueryMapper : IQueryMapper<GetJobLogsRequest, GetJobLogsQuery>
 {
-    public GetJobLogsQuery ToCommand(GetJobLogsRequest request) =>
-        new
-        (
-            request.JobId,
-            request.Page,
-            request.PageSize
-        );
+    public GetJobLogsQuery ToCommand(GetJobLogsRequest getJobLogsRequest) =>
+        new(getJobLogsRequest.JobId,
+            getJobLogsRequest.Page,
+            getJobLogsRequest.PageSize);
 }

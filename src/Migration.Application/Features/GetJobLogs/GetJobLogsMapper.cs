@@ -10,12 +10,4 @@ public class GetJobLogsMapper
                     x.Status,
                     x.Description))
             .ToList());
-
-    public GetJobLogsQuery ToQuery(GetJobLogsRequest getJobLogsRequest) =>
-        new
-        (
-            getJobLogsRequest.JobId,
-            getJobLogsRequest.Page,
-            getJobLogsRequest.PageSize
-        );
 }

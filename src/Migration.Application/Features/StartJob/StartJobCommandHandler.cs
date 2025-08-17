@@ -1,8 +1,8 @@
 ﻿namespace Migration.Application;
 
 public class StartJobCommandHandler(IStartJobService StartJobService)
-    : ICommandHandler<StartJobCommand>
+    : ICommandHandler<StartJobCommand, Result<StartJobResponse>>
 {
-    public Task ExecuteAsync(StartJobCommand startJobCommand, CancellationToken ct) =>
+    public Task<Result<StartJobResponse>> ExecuteAsync(StartJobCommand startJobCommand, CancellationToken ct) =>
         StartJobService.ProcessJobAsync(startJobCommand.JobId, ct);
 }

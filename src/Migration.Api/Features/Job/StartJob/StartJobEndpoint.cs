@@ -1,11 +1,22 @@
 ﻿namespace Migration.Api;
 
-public class StartJobEndpoint(
-    CacheSettings CacheSettings,
-    ThrottleSettings ThrottlingSettings,
-    StartJobMapper Mapper)
-    : Endpoint<StartJobRequest, StartJobResponse>
+public class StartJobEndpoint
+    : BaseEndpoint<StartJobRequest, StartJobCommand, StartJobResponse>
 {
+    public CacheSettings CacheSettings { get; init; }
+
+    public ThrottleSettings ThrottlingSettings { get; init; }
+
+    public StartJobEndpoint(
+        CacheSettings cacheSettings,
+        ThrottleSettings throttlingSettings,
+        ICommandMapper<StartJobRequest, StartJobCommand> RequestMapper)
+        : base(RequestMapper)
+    {
+        CacheSettings = cacheSettings;
+        ThrottlingSettings = throttlingSettings;
+    }
+
     public override void Configure()
     {
         Post("/jobs");
@@ -26,12 +37,7 @@ public class StartJobEndpoint(
 
     public override async Task HandleAsync(StartJobRequest startJobRequest, CancellationToken ct)
     {
-        var startJobCommand = Mapper.ToCommand(startJobRequest);
-
-        await startJobCommand.ExecuteAsync()
-            .ConfigureAwait(false);
-
-        await Send.OkAsync(ct)
-            .ConfigureAwait(false);
+        await HandleRequestAsync(startJobRequest, ct)
+           .ConfigureAwait(false);
     }
 }

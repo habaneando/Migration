@@ -2,5 +2,7 @@
 
 public interface IStartJobService
 {
-    Task ProcessJobAsync(Guid guid, CancellationToken cancellationToken = default);
+    Task<Result<StartJobResponse>> ProcessJobAsync(
+        Guid guid,
+        CancellationToken cancellationToken = default);
 }
