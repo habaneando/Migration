@@ -1,6 +1,5 @@
 ﻿namespace Migration.Common;
 
-public interface ICommandMapper<TRequest, TCommand>
+public interface ICommandMapper<TRequest, TCommand> : IRequestMapper<TRequest, TCommand>
 {
-    TCommand ToCommand(TRequest request);
 }

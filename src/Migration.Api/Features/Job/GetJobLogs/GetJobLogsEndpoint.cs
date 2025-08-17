@@ -10,8 +10,8 @@ public class GetJobLogsEndpoint
     public GetJobLogsEndpoint(
         CacheSettings cacheSettings,
         ThrottleSettings throttlingSettings,
-        IQueryMapper<GetJobLogsRequest, GetJobLogsQuery> QueryMapper)
-        : base(QueryMapper) 
+        IQueryMapper<GetJobLogsRequest, GetJobLogsQuery> RequestMapper)
+        : base(RequestMapper) 
     {
         CacheSettings = cacheSettings;
         ThrottlingSettings = throttlingSettings;

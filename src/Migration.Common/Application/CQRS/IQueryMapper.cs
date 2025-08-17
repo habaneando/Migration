@@ -1,6 +1,5 @@
 ﻿namespace Migration.Common;
 
-public interface IQueryMapper<TRequest, TQuery>
+public interface IQueryMapper<TRequest, TQuery> : IRequestMapper<TRequest, TQuery>
 {
-    TQuery ToQuery(TRequest request);
 }

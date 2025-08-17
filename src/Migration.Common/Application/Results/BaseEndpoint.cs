@@ -1,17 +1,17 @@
 ﻿namespace Migration.Common;
 
-public abstract class BaseEndpoint<TRequest, TQuery, TResponse>(
-    IQueryMapper<TRequest, TQuery> QueryMapper)
+public abstract class BaseEndpoint<TRequest, TCommand, TResponse>(
+    IRequestMapper<TRequest, TCommand> RequestMapper)
     : Endpoint<TRequest, BaseResponse<TResponse>>
     where TRequest : notnull
-    where TQuery : IQuery<Result<TResponse>>
+    where TCommand : ICommand<Result<TResponse>>
     where TResponse : notnull
 {
     public async Task HandleRequestAsync(TRequest request, CancellationToken ct)
     {
-        var query = QueryMapper.ToQuery(request);
+        var command = RequestMapper.ToCommand(request);
 
-        var result = await query.ExecuteAsync()
+        var result = await command.ExecuteAsync()
             .ConfigureAwait(false);
 
         var response = ResponseFactory.Create(result);
