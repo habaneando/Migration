@@ -1,36 +1,28 @@
 ﻿namespace Migration.Api;
 
-public class GetJobStatusEndpoint
-    : BaseEndpoint<GetJobStatusRequest, GetJobStatusQuery, GetJobStatusResponse>
+public class GetJobStatusEndpoint(
+    CacheSettings _cacheSettings,
+    ThrottleSettings _throttleSettings,
+    IQueryMapper<GetJobStatusRequest, GetJobStatusQuery> _requestMapper)
+    : BaseEndpoint<
+        GetJobStatusRequest,
+        GetJobStatusQuery,
+        GetJobStatusResponse>(_requestMapper)
 {
-    public CacheSettings CacheSettings { get; init; }
-
-    public ThrottleSettings ThrottlingSettings { get; init; }
-
-    public GetJobStatusEndpoint(
-        CacheSettings cacheSettings,
-        ThrottleSettings throttlingSettings,
-        IQueryMapper<GetJobStatusRequest, GetJobStatusQuery> RequestMapper)
-        : base(RequestMapper)
-    {
-        CacheSettings = cacheSettings;
-        ThrottlingSettings = throttlingSettings;
-    }
-
     public override void Configure()
     {
         Get("/jobs/{jobId}/status");
 
         Group<ApiVersion1Group>();
 
-        ResponseCache(CacheSettings.CacheDurationInSeconds);
+        ResponseCache(_cacheSettings.CacheDurationInSeconds);
 
-        Options(x => x.CacheOutput(p => p.Expire(CacheSettings.CacheDuration)));
+        Options(x => x.CacheOutput(p => p.Expire(_cacheSettings.CacheDuration)));
 
         AllowAnonymous();
         //Policies(...);
 
-        Throttle(ThrottlingSettings.HitLimit, ThrottlingSettings.DurationSeconds);
+        Throttle(_throttleSettings.HitLimit, _throttleSettings.DurationSeconds);
 
         EnableAntiforgery();
     }

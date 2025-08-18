@@ -1,36 +1,28 @@
 ﻿namespace Migration.Api;
 
-public class StartJobEndpoint
-    : BaseEndpoint<StartJobRequest, StartJobCommand, StartJobResponse>
+public class StartJobEndpoint(
+    CacheSettings _cacheSettings,
+    ThrottleSettings _throttleSettings,
+    ICommandMapper<StartJobRequest, StartJobCommand> _requestMapper)
+    : BaseEndpoint<
+        StartJobRequest,
+        StartJobCommand,
+        StartJobResponse>(_requestMapper)
 {
-    public CacheSettings CacheSettings { get; init; }
-
-    public ThrottleSettings ThrottlingSettings { get; init; }
-
-    public StartJobEndpoint(
-        CacheSettings cacheSettings,
-        ThrottleSettings throttlingSettings,
-        ICommandMapper<StartJobRequest, StartJobCommand> RequestMapper)
-        : base(RequestMapper)
-    {
-        CacheSettings = cacheSettings;
-        ThrottlingSettings = throttlingSettings;
-    }
-
     public override void Configure()
     {
         Post("/jobs");
 
         Group<ApiVersion1Group>();
 
-        ResponseCache(CacheSettings.CacheDurationInSeconds);
+        ResponseCache(_cacheSettings.CacheDurationInSeconds);
 
-        Options(x => x.CacheOutput(p => p.Expire(CacheSettings.CacheDuration)));
+        Options(x => x.CacheOutput(p => p.Expire(_cacheSettings.CacheDuration)));
 
         AllowAnonymous();
         //Policies(...);
 
-        Throttle(ThrottlingSettings.HitLimit, ThrottlingSettings.DurationSeconds);
+        Throttle(_throttleSettings.HitLimit, _throttleSettings.DurationSeconds);
 
         EnableAntiforgery();
     }

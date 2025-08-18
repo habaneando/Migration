@@ -1,7 +1,7 @@
 ﻿namespace Migration.Common;
 
 public abstract class BaseEndpoint<TRequest, TCommand, TResponse>(
-    IRequestMapper<TRequest, TCommand> RequestMapper)
+    IRequestMapper<TRequest, TCommand> _requestMapper)
     : Endpoint<TRequest, BaseResponse<TResponse>>
     where TRequest : notnull
     where TCommand : ICommand<Result<TResponse>>
@@ -9,7 +9,7 @@ public abstract class BaseEndpoint<TRequest, TCommand, TResponse>(
 {
     public async Task HandleRequestAsync(TRequest request, CancellationToken ct)
     {
-        var command = RequestMapper.ToCommand(request);
+        var command = _requestMapper.ToCommand(request);
 
         var result = await command.ExecuteAsync()
             .ConfigureAwait(false);
