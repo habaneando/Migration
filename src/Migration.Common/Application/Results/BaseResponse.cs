@@ -5,6 +5,7 @@ public record BaseResponse<T>
     /// <summary>
     /// Business logic result.
     /// </summary>
+    [JsonIgnore]
     public Result<T> Result { get; init; }
 
     /// <summary>
@@ -27,17 +28,16 @@ public record BaseResponse<T>
     /// </summary>
     public string? Message { get; init; }
 
-    [JsonIgnore]
-    public T? Value =>
-        Result.Data;
-
-    [JsonIgnore]
-    public IReadOnlyList<ErrorItem> Errors =>
-        Result.Errors;
-
-    [JsonIgnore]
     public bool Success =>
         Result.Success;
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public T? Data =>
+        Result.Data;
+
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public IReadOnlyList<ErrorItem>? Errors =>
+        Result.Success ? null : Result.Errors;
 
     protected BaseResponse(
         Result<T> result,

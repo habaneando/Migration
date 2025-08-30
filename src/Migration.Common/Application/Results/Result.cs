@@ -6,7 +6,6 @@ public sealed record Result<TData>
 
     public IReadOnlyList<ErrorItem> Errors { get; init; }
 
-    [JsonIgnore]
     public bool Success =>
         Data is not null &&
         Errors.Count == 0;
